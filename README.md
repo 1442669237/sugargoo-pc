@@ -1,6 +1,6 @@
 # sugargooPc
 
-基于 **Vue 3** + **Vite** + **Tailwind CSS v4** 构建的现代化前端工程。
+基于 **Vue 3** + **Vite** + **Tailwind CSS v4** 构建的现代化前端工程。1
 
 ---
 
@@ -18,6 +18,7 @@
 ## 💻 推荐开发环境
 
 ### IDE 与插件
+
 - **编辑器**：[VS Code](https://code.visualstudio.com/)
 - **插件推荐**：
   - [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar)（Vue 语言支持，需禁用 Vetur）
@@ -26,6 +27,7 @@
   - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)（代码规范检查）
 
 ### 浏览器插件
+
 - **Vue Devtools**：
   - [Chrome / Edge 扩展商店](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
   - [Firefox 扩展商店](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
@@ -35,31 +37,37 @@
 ## 🚀 常用命令
 
 ### 1. 安装依赖
+
 ```bash
 npm install
 ```
 
 ### 2. 启动本地开发服务
+
 ```bash
 npm run dev
 ```
 
 ### 3. 构建生产环境打包产物
+
 ```bash
 npm run build
 ```
 
 ### 4. 本地预览生产构建产物
+
 ```bash
 npm run preview
 ```
 
 ### 5. 代码规范检查与自动修复
+
 ```bash
 npm run lint
 ```
 
 ### 6. 代码格式化
+
 ```bash
 npm run format
 ```
