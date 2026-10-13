@@ -1,0 +1,54 @@
+import axios from 'axios'
+
+const request = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  timeout: 15000,
+})
+
+request.interceptors.request.use(
+  (config) => {
+    // 统一请求头、Token 等配置在认证接口接入后从这里追加。
+    return config
+  },
+  (error) => Promise.reject(error),
+)
+
+const statusMessages = {
+  400: '请求参数有误',
+  401: '请先登录或重新登录',
+  403: '没有操作权限',
+  404: '请求的资源不存在',
+  429: '操作过于频繁，请稍后重试',
+}
+
+request.interceptors.response.use(
+  (response) => response.data,
+  (error) => {
+    if (axios.isCancel(error)) return Promise.reject(error)
+
+    if (error.code === 'ECONNABORTED' || error.code === 'ETIMEDOUT') {
+      error.message = '请求超时，请稍后重试'
+    } else if (error.response) {
+      error.message = statusMessages[error.response.status] || '请求失败，请稍后重试'
+    } else if (error.request) {
+      error.message = '网络连接失败，请检查网络'
+    }
+
+    // 保留 AxiosError 的 response、code 等信息，由业务页面展示错误。
+    return Promise.reject(error)
+  },
+)
+
+// params 为 URL 查询参数，config 可传 headers、timeout、signal 等 Axios 配置。
+export const get = (url, params = {}, config = {}) => request.get(url, { ...config, params })
+export const del = (url, params = {}, config = {}) => request.delete(url, { ...config, params })
+export const head = (url, params = {}, config = {}) => request.head(url, { ...config, params })
+export const options = (url, params = {}, config = {}) =>
+  request.options(url, { ...config, params })
+
+// data 为请求体，也可以直接传入 FormData。
+export const post = (url, data, config = {}) => request.post(url, data, config)
+export const put = (url, data, config = {}) => request.put(url, data, config)
+export const patch = (url, data, config = {}) => request.patch(url, data, config)
+
+export default request
