@@ -1,0 +1,183 @@
+{
+  "settings": {
+    "language": "语言",
+    "currency": "币种",
+    "loadingRates": "加载汇率中…",
+    "ratesUnavailable": "汇率加载失败，暂以人民币显示。"
+  },
+  "common": {
+    "retry": "重试",
+    "reload": "重新加载",
+    "viewTitle": "查看{title}",
+    "closeDialog": "关闭弹窗",
+    "confirm": "知道了",
+    "demoNotice": "当前为首页静态演示，相关内容即将上线。",
+    "skipToContent": "跳转到主要内容"
+  },
+  "nav": {
+    "home": "首页",
+    "discover": "发现好物",
+    "shipping": "国际运费",
+    "guide": "代购指南",
+    "help": "帮助中心",
+    "homeLabel": "SUGARGOO 首页",
+    "mainLabel": "主导航",
+    "cart": "购物车",
+    "login": "登录",
+    "register": "注册"
+  },
+  "home": {
+    "announcement": "你的中国购物清单，从这里寄往世界。",
+    "learnService": "了解代购服务 →",
+    "loading": "正在获取首页数据…",
+    "loadFailed": "首页数据加载失败：{error}。请确认本地 API 服务已启动。"
+  },
+  "cart": {
+    "empty": "购物车还是空的，先发现一些心动好物吧。"
+  },
+  "hero": {
+    "title": "心动的中国好物，",
+    "titleAccent": "轻松购向世界。",
+    "description": "从商品代购、入库验货到合箱寄送，",
+    "descriptionBrand": "SUGARGOO 帮你把购物灵感，变成收到包裹的快乐。",
+    "shoppingBenefit": "代购协助",
+    "inspectionBenefit": "入库质检",
+    "consolidationBenefit": "合箱寄送",
+    "imageAlt": "阳光下的购物纸箱、鞋履与橙色肩包",
+    "captionTitle": "一份清单，无限灵感。",
+    "captionDescription": "日常穿搭 · 潮流配饰 · 生活好物",
+    "eyebrow": "SHOP IN CHINA. SHIP WORLDWIDE.",
+    "imageEyebrow": "YOUR NEXT GOOD FIND"
+  },
+  "search": {
+    "linkLabel": "商品链接",
+    "placeholder": "粘贴商品链接，开始代购",
+    "submit": "搜索商品",
+    "steps": "复制商品页链接 → 粘贴搜索 → 确认商品",
+    "manualTitle": "手动下单",
+    "manualAction": "找不到商品？手动下单 ↗",
+    "ctaTitle": "你的下一份购物清单，从一个链接开始。",
+    "ctaDescription": "搜索心动商品，探索更多中国好物。",
+    "ctaAction": "开始搜索商品",
+    "dialogTitle": "商品搜索",
+    "demoResult": "已收到商品链接：{link}。当前使用 mock 数据，暂不解析真实商品链接。"
+  },
+  "offers": {
+    "title": "好物值得，优惠也别错过。",
+    "viewAll": "查看全部活动",
+    "dialogTitle": "优惠活动",
+    "demoNotice": "优惠活动展示为 mock 数据，活动资格、有效期及使用规则以上线后的活动页面为准。",
+    "specialEyebrow": "SPECIAL PICKS / 特别促销",
+    "specialTitle": "换个穿搭，发现新的自己。",
+    "specialDescription": "精选服饰与配饰，把日常灵感加入购物清单。",
+    "specialAction": "探索特别促销",
+    "imageAlt": "橙色肩包与深色服饰的特别促销陈列",
+    "termsNotice": "活动资格、有效期及使用规则以对应活动页面为准。",
+    "eyebrow": "A LITTLE EXTRA JOY"
+  },
+  "products": {
+    "title": "下一件心动好物，在这里。",
+    "description": "从日常穿搭到出行配饰，按你的风格慢慢逛。",
+    "browse": "浏览更多商品",
+    "moreTitle": "更多商品",
+    "categoriesLabel": "商品分类",
+    "empty": "这个分类的好物还在准备中，先逛逛其他分类吧。",
+    "imageNotice": "商品图片为选品示意；实际款式、售价与库存以商品详情页为准。",
+    "demoDescription": "{description}。这是 mock 商品展示，暂不支持真实购买。",
+    "removeFavorite": "取消收藏",
+    "addFavorite": "收藏",
+    "details": "查看商品详情 ↗",
+    "eyebrow": "THE GOOD FINDS"
+  },
+  "process": {
+    "title": "购物的快乐留给你，繁琐的步骤交给我们。",
+    "description": "一站式代购服务，让每一个环节都清清楚楚。",
+    "guide": "查看新手指南",
+    "eyebrow": "FROM LINK TO DOORSTEP"
+  },
+  "shipping": {
+    "title": "选一条适合你的寄送路线。",
+    "description": "目的地、包裹重量和商品类型不同，可用线路也会不同。先估算，再决定。",
+    "viewAll": "查看全部线路",
+    "routesTitle": "运输线路",
+    "routesNotice": "邮政线路、专线运输、商业快递均为静态展示，可在下方体验 mock 运费查询。",
+    "formTitle": "国际运费估算",
+    "destinationLabel": "目的地",
+    "destinationPlaceholder": "选择国家 / 地区 ⌄",
+    "weightLabel": "包裹重量",
+    "weightAriaLabel": "包裹重量（g）",
+    "weightPlaceholder": "输入重量（g）",
+    "goodsTypeLabel": "商品类型",
+    "goodsTypePlaceholder": "选择商品类型 ⌄",
+    "searching": "查询中…",
+    "search": "查询线路",
+    "costNotice": "运费与预计时效：查询后查看",
+    "restrictionsNotice": "可寄范围：以实际线路说明为准",
+    "matchRoutes": "匹配可用线路 →",
+    "availabilityNotice": "以上为线路选择参考，并非实时可用线路。报价、计费重量、运输时效及寄送限制以查询结果为准。",
+    "validationTitle": "请完善包裹信息",
+    "validationDescription": "请选择目的地和商品类型，并填写大于 0 的包裹重量。",
+    "resultTitle": "运费估算 · 演示结果",
+    "resultDescription": "{destination} · {goodsType} · {weight}g。{route}预估费用 {price}，预计 {days} 个工作日。以上为本地接口返回的 mock 数据。",
+    "errorTitle": "运费查询失败",
+    "eyebrow": "FIND YOUR WAY HOME"
+  },
+  "countries": {
+    "US": "美国",
+    "GB": "英国",
+    "CA": "加拿大",
+    "AU": "澳大利亚",
+    "JP": "日本"
+  },
+  "goodsTypes": {
+    "clothing": "普通服饰",
+    "shoes": "鞋履箱包",
+    "household": "生活用品"
+  },
+  "stories": {
+    "title": "从购物清单，到拆箱时刻。",
+    "description": "看看不同风格的寄送灵感，计划属于你的下一箱好物。",
+    "action": "进入分享社区",
+    "dialogTitle": "分享社区",
+    "demoNotice": "这是一份购物与寄送场景示意，展示内容为 mock 数据。",
+    "scenario": "寄送场景示意",
+    "imageNotice": "展示图片为购物与寄送场景示意，不代表真实用户评价或实际寄送记录。",
+    "eyebrow": "UNBOX A LITTLE HAPPINESS"
+  },
+  "help": {
+    "title": "第一次使用？",
+    "titleAccent": "我们陪你开始。",
+    "description": "关于购买、仓库和国际寄送，",
+    "descriptionEnd": "先看看这些常见问题。",
+    "dialogDescription": "你可以展开右侧常见问题，了解代购、仓储和国际寄送流程。",
+    "action": "进入帮助中心",
+    "supportTitle": "在线客服",
+    "supportNotice": "客服入口为静态演示，暂未连接在线客服服务。",
+    "contactAction": "还需要帮助？联系在线客服 →",
+    "eyebrow": "A LITTLE HELP TO START"
+  },
+  "footer": {
+    "brandTitle": "连接中国好物与你的生活。",
+    "brandDescription": "代购、仓储、国际寄送，一站式购物体验。",
+    "community": "社区",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "restrictions": "寄送限制",
+    "copyright": "© SUGARGOO. All rights reserved."
+  },
+  "notFound": {
+    "description": "页面不存在或已被移除",
+    "backHome": "返回首页",
+    "title": "页面未找到"
+  },
+  "errors": {
+    "invalidRequest": "请求参数有误",
+    "unauthorized": "请先登录或重新登录",
+    "forbidden": "没有操作权限",
+    "notFound": "请求的资源不存在",
+    "tooManyRequests": "操作过于频繁，请稍后重试",
+    "timeout": "请求超时，请稍后重试",
+    "requestFailed": "请求失败，请稍后重试",
+    "network": "网络连接失败，请检查网络"
+  }
+}

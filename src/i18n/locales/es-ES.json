@@ -1,0 +1,183 @@
+{
+  "settings": {
+    "language": "Idioma",
+    "currency": "Moneda",
+    "loadingRates": "Cargando tipos de cambio…",
+    "ratesUnavailable": "Tipos de cambio no disponibles. Los precios se muestran en CNY."
+  },
+  "common": {
+    "retry": "Reintentar",
+    "reload": "Volver a cargar",
+    "viewTitle": "Ver {title}",
+    "closeDialog": "Cerrar ventana",
+    "confirm": "Entendido",
+    "demoNotice": "Esta es una demostración del inicio. Habrá más funciones próximamente.",
+    "skipToContent": "Saltar al contenido principal"
+  },
+  "nav": {
+    "home": "Inicio",
+    "discover": "Descubrir",
+    "shipping": "Envíos",
+    "guide": "Guía de compras",
+    "help": "Centro de ayuda",
+    "homeLabel": "Inicio de SUGARGOO",
+    "mainLabel": "Navegación principal",
+    "cart": "Carrito",
+    "login": "Iniciar sesión",
+    "register": "Registrarse"
+  },
+  "home": {
+    "announcement": "Tus compras de China, enviadas a todo el mundo.",
+    "learnService": "Conoce nuestro servicio de compras →",
+    "loading": "Cargando la página de inicio…",
+    "loadFailed": "No se pudo cargar el inicio: {error}. Comprueba que la API local esté en funcionamiento."
+  },
+  "cart": {
+    "empty": "Tu carrito está vacío. Descubre primero algo que te encante."
+  },
+  "hero": {
+    "title": "Encuentra tus favoritos en China,",
+    "titleAccent": "compra y recibe con facilidad.",
+    "description": "Desde la compra y la inspección hasta la consolidación de paquetes,",
+    "descriptionBrand": "SUGARGOO convierte tu inspiración en la alegría de recibir tu paquete.",
+    "shoppingBenefit": "Asistencia de compra",
+    "inspectionBenefit": "Inspección en almacén",
+    "consolidationBenefit": "Envío consolidado",
+    "imageAlt": "Cajas de compras, zapatos y un bolso naranja al sol",
+    "captionTitle": "Una lista. Inspiración sin límites.",
+    "captionDescription": "Moda diaria · Accesorios · Artículos para el hogar",
+    "eyebrow": "COMPRA EN CHINA. ENVÍOS A TODO EL MUNDO.",
+    "imageEyebrow": "TU PRÓXIMO GRAN HALLAZGO"
+  },
+  "search": {
+    "linkLabel": "Enlace del producto",
+    "placeholder": "Pega un enlace para empezar a comprar",
+    "submit": "Buscar productos",
+    "steps": "Copia un enlace → Pega y busca → Confirma tu producto",
+    "manualTitle": "Pedido manual",
+    "manualAction": "¿No lo encuentras? Haz un pedido manual ↗",
+    "ctaTitle": "Tu próxima lista de compras empieza con un enlace.",
+    "ctaDescription": "Busca tus favoritos y descubre más productos de China.",
+    "ctaAction": "Empezar a buscar",
+    "dialogTitle": "Búsqueda de productos",
+    "demoResult": "Enlace recibido: {link}. Esta demostración aún no procesa enlaces reales."
+  },
+  "offers": {
+    "title": "Grandes hallazgos, grandes ofertas.",
+    "viewAll": "Ver todas las ofertas",
+    "dialogTitle": "Ofertas",
+    "demoNotice": "Estas ofertas son de demostración. Los requisitos, la validez y las condiciones se indicarán en la página de cada oferta.",
+    "specialEyebrow": "SELECCIÓN ESPECIAL",
+    "specialTitle": "Un nuevo estilo. Una nueva versión de ti.",
+    "specialDescription": "Añade inspiración a tu lista con ropa y accesorios seleccionados.",
+    "specialAction": "Explorar ofertas especiales",
+    "imageAlt": "Un bolso naranja y prendas oscuras en una exposición de ofertas",
+    "termsNotice": "Consulta los requisitos, la validez y las condiciones en la página de cada oferta.",
+    "eyebrow": "UN POCO MÁS DE ALEGRÍA"
+  },
+  "products": {
+    "title": "Tu próximo favorito está aquí.",
+    "description": "Desde ropa diaria hasta accesorios de viaje, descubre tu estilo.",
+    "browse": "Ver más productos",
+    "moreTitle": "Más productos",
+    "categoriesLabel": "Categorías de productos",
+    "empty": "Estamos preparando más productos en esta categoría. Explora otra mientras tanto.",
+    "imageNotice": "Las imágenes son ilustrativas. Consulta los estilos, precios y existencias en la página del producto.",
+    "demoDescription": "{description}. Este producto es de demostración y aún no se puede comprar.",
+    "removeFavorite": "Quitar de favoritos",
+    "addFavorite": "Añadir a favoritos",
+    "details": "Ver detalles del producto ↗",
+    "eyebrow": "LOS MEJORES HALLAZGOS"
+  },
+  "process": {
+    "title": "Disfruta de las compras. Nosotros nos ocupamos del resto.",
+    "description": "Un servicio de compras completo, con claridad en cada paso.",
+    "guide": "Leer la guía para principiantes",
+    "eyebrow": "DEL ENLACE A TU PUERTA"
+  },
+  "shipping": {
+    "title": "Encuentra la ruta de envío ideal para ti.",
+    "description": "Las rutas dependen del destino, peso y tipo de producto. Calcula primero y decide después.",
+    "viewAll": "Ver todas las rutas",
+    "routesTitle": "Rutas de envío",
+    "routesNotice": "Las rutas postales, dedicadas y exprés son de demostración. Prueba la calculadora de envío.",
+    "formTitle": "Calculadora de envío internacional",
+    "destinationLabel": "Destino",
+    "destinationPlaceholder": "Selecciona país / región ⌄",
+    "weightLabel": "Peso del paquete",
+    "weightAriaLabel": "Peso del paquete (g)",
+    "weightPlaceholder": "Introduce el peso (g)",
+    "goodsTypeLabel": "Tipo de producto",
+    "goodsTypePlaceholder": "Selecciona el tipo de producto ⌄",
+    "searching": "Buscando…",
+    "search": "Buscar rutas",
+    "costNotice": "Costo y plazo: disponibles tras la consulta",
+    "restrictionsNotice": "Restricciones: consulta los detalles de la ruta",
+    "matchRoutes": "Buscar rutas disponibles →",
+    "availabilityNotice": "Las rutas son orientativas. Los precios, el peso facturable, los plazos y las restricciones dependen de los resultados de la consulta.",
+    "validationTitle": "Completa los datos del paquete",
+    "validationDescription": "Selecciona un destino y tipo de producto e introduce un peso mayor que 0.",
+    "resultTitle": "Estimación del envío · Resultado de demostración",
+    "resultDescription": "{destination} · {goodsType} · {weight}g. {route}: costo estimado {price}, entrega en {days} días laborables. Estimación con datos locales de demostración.",
+    "errorTitle": "No se pudo calcular el envío",
+    "eyebrow": "ENCUENTRA TU RUTA"
+  },
+  "countries": {
+    "US": "Estados Unidos",
+    "GB": "Reino Unido",
+    "CA": "Canadá",
+    "AU": "Australia",
+    "JP": "Japón"
+  },
+  "goodsTypes": {
+    "clothing": "Ropa",
+    "shoes": "Zapatos y bolsos",
+    "household": "Artículos para el hogar"
+  },
+  "stories": {
+    "title": "De tu lista de compras a tu puerta.",
+    "description": "Descubre ideas de envío y prepara tu próxima caja de favoritos.",
+    "action": "Explorar la comunidad",
+    "dialogTitle": "Comunidad",
+    "demoNotice": "Este ejemplo de compras y envíos utiliza datos de demostración.",
+    "scenario": "Ideas de envío",
+    "imageNotice": "Las imágenes ilustran compras y envíos, no opiniones reales ni registros de envíos.",
+    "eyebrow": "ABRE UNA CAJA DE ALEGRÍA"
+  },
+  "help": {
+    "title": "¿Es tu primera vez?",
+    "titleAccent": "Te ayudamos a empezar.",
+    "description": "¿Dudas sobre compras, almacén o envíos internacionales?",
+    "descriptionEnd": "Empieza con estas preguntas frecuentes.",
+    "dialogDescription": "Abre las preguntas frecuentes para conocer las compras, el almacén y los envíos internacionales.",
+    "action": "Visitar el centro de ayuda",
+    "supportTitle": "Atención al cliente",
+    "supportNotice": "La atención al cliente es una demostración y aún no está conectada a un servicio real.",
+    "contactAction": "¿Necesitas más ayuda? Contacta con atención al cliente →",
+    "eyebrow": "UNA AYUDA PARA EMPEZAR"
+  },
+  "footer": {
+    "brandTitle": "Conectamos los mejores productos de China con tu vida diaria.",
+    "brandDescription": "Compras, almacén y envíos internacionales, todo en un solo lugar.",
+    "community": "Comunidad",
+    "terms": "Términos del servicio",
+    "privacy": "Política de privacidad",
+    "restrictions": "Restricciones de envío",
+    "copyright": "© SUGARGOO. Todos los derechos reservados."
+  },
+  "notFound": {
+    "description": "Esta página no existe o ha sido eliminada",
+    "backHome": "Volver al inicio",
+    "title": "Página no encontrada"
+  },
+  "errors": {
+    "invalidRequest": "Parámetros de solicitud incorrectos",
+    "unauthorized": "Inicia sesión de nuevo",
+    "forbidden": "No tienes permiso",
+    "notFound": "El recurso solicitado no existe",
+    "tooManyRequests": "Demasiadas solicitudes. Inténtalo más tarde",
+    "timeout": "La solicitud ha caducado. Inténtalo de nuevo",
+    "requestFailed": "La solicitud ha fallado. Inténtalo de nuevo",
+    "network": "Error de conexión. Comprueba tu red"
+  }
+}

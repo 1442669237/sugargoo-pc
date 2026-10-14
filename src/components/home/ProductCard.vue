@@ -31,7 +31,7 @@ const saved = ref(false)
         class="favorite"
         :class="{ saved }"
         type="button"
-        :aria-label="`${t(saved ? '取消收藏' : '收藏')} ${product.name}`"
+        :aria-label="`${t(saved ? 'products.removeFavorite' : 'products.addFavorite')} ${product.name}`"
         :aria-pressed="saved"
         @click="saved = !saved"
       >
@@ -41,7 +41,7 @@ const saved = ref(false)
     <div class="product-info">
       <p>{{ product.description }}</p>
       <h3>{{ product.name }}</h3>
-      <button type="button" @click="$emit('details', product)">{{ t('查看商品详情 ↗') }}</button>
+      <button type="button" @click="$emit('details', product)">{{ t('products.details') }}</button>
     </div>
   </article>
 </template>

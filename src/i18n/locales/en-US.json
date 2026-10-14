@@ -1,0 +1,183 @@
+{
+  "settings": {
+    "language": "Language",
+    "currency": "Currency",
+    "loadingRates": "Loading exchange rates…",
+    "ratesUnavailable": "Exchange rates unavailable. Prices are shown in CNY."
+  },
+  "common": {
+    "retry": "Retry",
+    "reload": "Reload",
+    "viewTitle": "View {title}",
+    "closeDialog": "Close dialog",
+    "confirm": "Got it",
+    "demoNotice": "This is a homepage demo. More features are coming soon.",
+    "skipToContent": "Skip to main content"
+  },
+  "nav": {
+    "home": "Home",
+    "discover": "Discover",
+    "shipping": "Shipping",
+    "guide": "Shopping guide",
+    "help": "Help center",
+    "homeLabel": "SUGARGOO home",
+    "mainLabel": "Main navigation",
+    "cart": "Cart",
+    "login": "Log in",
+    "register": "Sign up"
+  },
+  "home": {
+    "announcement": "Your shopping finds from China, shipped worldwide.",
+    "learnService": "How our shopping service works →",
+    "loading": "Loading the homepage…",
+    "loadFailed": "Could not load the homepage: {error}. Please check that the local API is running."
+  },
+  "cart": {
+    "empty": "Your cart is empty. Discover something you love first."
+  },
+  "hero": {
+    "title": "Find your favorites in China,",
+    "titleAccent": "shop and ship with ease.",
+    "description": "From purchasing and warehouse inspection to parcel consolidation,",
+    "descriptionBrand": "SUGARGOO turns shopping inspiration into the joy of unboxing.",
+    "shoppingBenefit": "Shopping assistance",
+    "inspectionBenefit": "Warehouse inspection",
+    "consolidationBenefit": "Consolidated shipping",
+    "imageAlt": "Shopping boxes, shoes and an orange shoulder bag in the sunshine",
+    "captionTitle": "One wishlist. Endless inspiration.",
+    "captionDescription": "Everyday outfits · Stylish accessories · Lifestyle finds",
+    "eyebrow": "SHOP IN CHINA. SHIP WORLDWIDE.",
+    "imageEyebrow": "YOUR NEXT GOOD FIND"
+  },
+  "search": {
+    "linkLabel": "Product link",
+    "placeholder": "Paste a product link to start shopping",
+    "submit": "Search products",
+    "steps": "Copy a product link → Paste and search → Confirm your item",
+    "manualTitle": "Manual order",
+    "manualAction": "Can't find it? Order manually ↗",
+    "ctaTitle": "Your next wishlist starts with a link.",
+    "ctaDescription": "Search your favorites and discover more finds from China.",
+    "ctaAction": "Start searching",
+    "dialogTitle": "Product search",
+    "demoResult": "Product link received: {link}. This demo does not resolve real product links yet."
+  },
+  "offers": {
+    "title": "Great finds deserve great offers.",
+    "viewAll": "View all offers",
+    "dialogTitle": "Offers",
+    "demoNotice": "These offers are demo data. Eligibility, validity and terms will be shown on the live offer page.",
+    "specialEyebrow": "SPECIAL PICKS",
+    "specialTitle": "A fresh outfit. A new side of you.",
+    "specialDescription": "Add inspiration to your wishlist with selected clothing and accessories.",
+    "specialAction": "Explore special offers",
+    "imageAlt": "An orange shoulder bag and dark clothing in a special-offer display",
+    "termsNotice": "See each offer page for eligibility, validity and terms.",
+    "eyebrow": "A LITTLE EXTRA JOY"
+  },
+  "products": {
+    "title": "Your next favorite is right here.",
+    "description": "From everyday outfits to travel accessories, explore your style.",
+    "browse": "Browse more products",
+    "moreTitle": "More products",
+    "categoriesLabel": "Product categories",
+    "empty": "We're preparing more finds in this category. Explore another for now.",
+    "imageNotice": "Images are illustrative. See product pages for actual styles, prices and stock.",
+    "demoDescription": "{description}. This is a demo product and cannot be purchased yet.",
+    "removeFavorite": "Remove from favorites",
+    "addFavorite": "Add to favorites",
+    "details": "View product details ↗",
+    "eyebrow": "THE GOOD FINDS"
+  },
+  "process": {
+    "title": "Enjoy the shopping. We'll handle the details.",
+    "description": "A complete shopping service, with clarity at every step.",
+    "guide": "Read the beginner's guide",
+    "eyebrow": "FROM LINK TO DOORSTEP"
+  },
+  "shipping": {
+    "title": "Find the right shipping route for you.",
+    "description": "Available routes depend on destination, weight and item type. Estimate first, then decide.",
+    "viewAll": "View all routes",
+    "routesTitle": "Shipping routes",
+    "routesNotice": "Postal, dedicated and express routes are demo content. Try the shipping estimator below.",
+    "formTitle": "Shipping estimator",
+    "destinationLabel": "Destination",
+    "destinationPlaceholder": "Select country / region ⌄",
+    "weightLabel": "Parcel weight",
+    "weightAriaLabel": "Parcel weight (g)",
+    "weightPlaceholder": "Enter weight (g)",
+    "goodsTypeLabel": "Item type",
+    "goodsTypePlaceholder": "Select item type ⌄",
+    "searching": "Searching…",
+    "search": "Find routes",
+    "costNotice": "Cost and delivery time: available after search",
+    "restrictionsNotice": "Restrictions: see the route details",
+    "matchRoutes": "Find available routes →",
+    "availabilityNotice": "Routes are illustrative, not live availability. Quotes, chargeable weight, delivery times and restrictions depend on search results.",
+    "validationTitle": "Complete parcel details",
+    "validationDescription": "Select a destination and item type, and enter a parcel weight greater than 0.",
+    "resultTitle": "Shipping estimate · Demo result",
+    "resultDescription": "{destination} · {goodsType} · {weight}g. {route}: estimated cost {price}, delivery in {days} business days. This estimate uses local demo data.",
+    "errorTitle": "Shipping estimate failed",
+    "eyebrow": "FIND YOUR WAY HOME"
+  },
+  "countries": {
+    "US": "United States",
+    "GB": "United Kingdom",
+    "CA": "Canada",
+    "AU": "Australia",
+    "JP": "Japan"
+  },
+  "goodsTypes": {
+    "clothing": "Clothing",
+    "shoes": "Shoes and bags",
+    "household": "Household items"
+  },
+  "stories": {
+    "title": "From your wishlist to your doorstep.",
+    "description": "Explore shipping inspiration and plan your next box of favorites.",
+    "action": "Explore the community",
+    "dialogTitle": "Community",
+    "demoNotice": "This shopping and shipping scenario uses demo data.",
+    "scenario": "Shipping inspiration",
+    "imageNotice": "Images illustrate shopping and shipping scenarios, not actual reviews or shipment records.",
+    "eyebrow": "UNBOX A LITTLE HAPPINESS"
+  },
+  "help": {
+    "title": "New here?",
+    "titleAccent": "Let's get you started.",
+    "description": "Questions about shopping, storage or international shipping?",
+    "descriptionEnd": "Start with these frequently asked questions.",
+    "dialogDescription": "Expand the FAQs to learn about shopping, storage and international shipping.",
+    "action": "Visit the help center",
+    "supportTitle": "Customer support",
+    "supportNotice": "Customer support is a demo and is not connected to a live service yet.",
+    "contactAction": "Need more help? Contact support →",
+    "eyebrow": "A LITTLE HELP TO START"
+  },
+  "footer": {
+    "brandTitle": "Connecting China's great finds with your everyday life.",
+    "brandDescription": "Shopping, storage and international shipping, all in one place.",
+    "community": "Community",
+    "terms": "Terms of service",
+    "privacy": "Privacy policy",
+    "restrictions": "Shipping restrictions",
+    "copyright": "© SUGARGOO. All rights reserved."
+  },
+  "notFound": {
+    "description": "This page does not exist or has been removed",
+    "backHome": "Back to home",
+    "title": "Page not found"
+  },
+  "errors": {
+    "invalidRequest": "Invalid request parameters",
+    "unauthorized": "Please log in or sign in again",
+    "forbidden": "You do not have permission",
+    "notFound": "The requested resource does not exist",
+    "tooManyRequests": "Too many requests. Please try again later",
+    "timeout": "Request timed out. Please try again",
+    "requestFailed": "Request failed. Please try again",
+    "network": "Connection failed. Please check your network"
+  }
+}

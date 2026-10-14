@@ -1,0 +1,323 @@
+{
+  "assurances": [
+    ["Sigue tus pedidos", "Actualizaciones claras de compras y almacén"],
+    ["Consulta las inspecciones", "Revisa tus productos con fotos del almacén"],
+    ["Gestiona tus paquetes", "Elige consolidación y embalaje según tus necesidades"],
+    ["Calcula el envío", "Compara rutas y costos antes del envío"]
+  ],
+  "categories": [
+    {
+      "code": "all",
+      "label": "Todos"
+    },
+    {
+      "code": "clothing",
+      "label": "Ropa"
+    },
+    {
+      "code": "shoes",
+      "label": "Calzado"
+    },
+    {
+      "code": "bags",
+      "label": "Bolsos"
+    },
+    {
+      "code": "accessories",
+      "label": "Accesorios"
+    },
+    {
+      "code": "lifestyle",
+      "label": "Hogar"
+    }
+  ],
+  "footerGroups": [
+    {
+      "title": "Guía de compras",
+      "links": [
+        {
+          "label": "Cómo comprar",
+          "target": "#process",
+          "id": "footerGroups-1-link-1"
+        },
+        {
+          "label": "Búsqueda de productos",
+          "target": "#search",
+          "id": "footerGroups-1-link-2"
+        },
+        {
+          "label": "Gestión de pedidos",
+          "id": "footerGroups-1-link-3"
+        },
+        {
+          "label": "Información de tarifas",
+          "id": "footerGroups-1-link-4"
+        }
+      ],
+      "id": "footerGroups-1"
+    },
+    {
+      "title": "Envíos y almacén",
+      "links": [
+        {
+          "label": "Estimación del envío",
+          "target": "#shipping",
+          "id": "footerGroups-2-link-1"
+        },
+        {
+          "label": "Rutas de envío",
+          "target": "#shipping",
+          "id": "footerGroups-2-link-2"
+        },
+        {
+          "label": "Mi almacén",
+          "id": "footerGroups-2-link-3"
+        },
+        {
+          "label": "Seguimiento de paquetes",
+          "id": "footerGroups-2-link-4"
+        }
+      ],
+      "id": "footerGroups-2"
+    },
+    {
+      "title": "Sobre nosotros",
+      "links": [
+        {
+          "label": "Acerca de SUGARGOO",
+          "id": "footerGroups-3-link-1"
+        },
+        {
+          "label": "Centro de ayuda",
+          "target": "#help",
+          "id": "footerGroups-3-link-2"
+        },
+        {
+          "label": "Contáctanos",
+          "target": "#help",
+          "id": "footerGroups-3-link-3"
+        },
+        {
+          "label": "Comunidad",
+          "target": "#stories",
+          "id": "footerGroups-3-link-4"
+        }
+      ],
+      "id": "footerGroups-3"
+    }
+  ],
+  "offers": [
+    {
+      "label": "Ofertas para nuevos clientes",
+      "title": "¿Tu primer pedido? Empieza aquí.",
+      "description": "Descubre ofertas para nuevos clientes y crea tu primera lista.",
+      "action": "Ver ofertas para nuevos clientes →",
+      "icon": "96471.svg",
+      "id": "offers-1"
+    },
+    {
+      "label": "Ofertas de envío",
+      "title": "Un ahorro extra para tus planes de envío.",
+      "description": "Visita el centro de cupones para ver ofertas de envío.",
+      "action": "Ir al centro de cupones →",
+      "icon": "30d0e.svg",
+      "id": "offers-2"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Zapatillas retro multicolor",
+      "category": "Calzado",
+      "description": "Calzado / Estilo diario",
+      "tag": "Selección de estilo",
+      "photo": "f8598.png",
+      "categoryCode": "shoes"
+    },
+    {
+      "id": 2,
+      "name": "Chaqueta clásica de cuero negro",
+      "category": "Ropa",
+      "description": "Ropa / Prendas de abrigo",
+      "photo": "c28cf.png",
+      "categoryCode": "clothing"
+    },
+    {
+      "id": 3,
+      "name": "Bolso ligero · Naranja vivo",
+      "category": "Bolsos",
+      "description": "Bolsos / Accesorios de viaje",
+      "tag": "Selección inspiradora",
+      "photo": "f626f.png",
+      "categoryCode": "bags"
+    },
+    {
+      "id": 4,
+      "name": "Jersey holgado de cuello redondo",
+      "category": "Ropa",
+      "description": "Ropa / Comodidad diaria",
+      "photo": "f0b00.png",
+      "categoryCode": "clothing"
+    },
+    {
+      "id": 5,
+      "name": "Chaqueta bomber verde oliva retro",
+      "category": "Ropa",
+      "description": "Ropa / Estilo por capas",
+      "photo": "8217f.png",
+      "categoryCode": "clothing"
+    },
+    {
+      "id": 6,
+      "name": "Zapatillas bajas de lona",
+      "category": "Calzado",
+      "description": "Calzado / Salidas informales",
+      "photo": "3461f.png",
+      "categoryCode": "shoes"
+    },
+    {
+      "id": 7,
+      "name": "Bolsa de lona urbana",
+      "category": "Bolsos",
+      "description": "Bolsos / Estilo de vida",
+      "photo": "00528.png",
+      "categoryCode": "bags"
+    },
+    {
+      "id": 8,
+      "name": "Gorra de algodón lavado",
+      "category": "Accesorios",
+      "description": "Accesorios / El toque final",
+      "photo": "ff634.png",
+      "categoryCode": "accessories"
+    }
+  ],
+  "questions": [
+    {
+      "title": "¿Cómo hago un pedido con un enlace?",
+      "answer": "Copia un enlace en el buscador del inicio. Confirma las opciones, la cantidad y los detalles y sigue los pasos del pedido. Si no se reconoce el enlace, usa el pedido manual.",
+      "id": "questions-1"
+    },
+    {
+      "title": "¿Dónde puedo ver las fotos de inspección?",
+      "answer": "Tras la llegada, consulta los detalles y las fotos de inspección en Mi almacén. Esta demostración aún no incluye datos reales del almacén.",
+      "id": "questions-2"
+    },
+    {
+      "title": "¿Se pueden enviar juntos productos de distintas tiendas?",
+      "answer": "Cuando lleguen los productos, selecciónalos para un envío consolidado. Consulta las opciones y restricciones en los detalles del servicio.",
+      "id": "questions-3"
+    },
+    {
+      "title": "¿Cómo se calcula el envío internacional?",
+      "answer": "El envío suele depender del destino, peso facturable y ruta. Prueba la calculadora de arriba; los resultados son de demostración.",
+      "id": "questions-4"
+    },
+    {
+      "title": "¿Qué productos tienen restricciones de envío internacional?",
+      "answer": "Las restricciones varían según el país, región y ruta. Consulta los detalles o contacta con atención al cliente antes del envío.",
+      "id": "questions-5"
+    }
+  ],
+  "routes": [
+    {
+      "title": "Servicio postal",
+      "label": "Para paquetes pequeños y ligeros",
+      "icon": "8f81e.svg",
+      "tone": "green",
+      "description": "Comprueba el servicio postal en tu destino y compara tarifas y límites de peso.",
+      "id": "routes-1"
+    },
+    {
+      "title": "Envío dedicado",
+      "label": "Para paquetes de compras habituales",
+      "icon": "f1d0e.svg",
+      "tone": "peach",
+      "description": "Filtra rutas dedicadas por destino y revisa los productos permitidos, límites y normas de aduanas.",
+      "id": "routes-2"
+    },
+    {
+      "title": "Mensajería exprés",
+      "label": "Para distintas necesidades de envío",
+      "icon": "6420b.svg",
+      "tone": "purple",
+      "description": "Compara opciones según el tamaño y peso del paquete y revisa los costos y detalles del servicio.",
+      "id": "routes-3"
+    }
+  ],
+  "shortcuts": [
+    {
+      "title": "Estimación del envío",
+      "description": "Consulta primero el costo del envío",
+      "icon": "0be24.svg",
+      "target": "#shipping",
+      "id": "shortcuts-1"
+    },
+    {
+      "title": "Mi almacén",
+      "description": "Consulta productos y paquetes del almacén",
+      "icon": "a0807.svg",
+      "id": "shortcuts-2"
+    },
+    {
+      "title": "Centro de cupones",
+      "description": "Descubre las ofertas actuales",
+      "icon": "23594.svg",
+      "target": "#offers",
+      "id": "shortcuts-3"
+    },
+    {
+      "title": "Atención al cliente",
+      "description": "Te ayudamos con tus dudas de compra",
+      "icon": "bdc1b.svg",
+      "target": "#help",
+      "id": "shortcuts-4"
+    }
+  ],
+  "steps": [
+    {
+      "icon": "5637f.svg",
+      "title": "Encuentra tus favoritos",
+      "description": "Pega un enlace, confirma opciones y cantidad y envía tu pedido.",
+      "id": "steps-1"
+    },
+    {
+      "icon": "ef19a.svg",
+      "title": "Compramos por ti",
+      "description": "Sigue las compras y el envío nacional en las actualizaciones de tu pedido.",
+      "id": "steps-2"
+    },
+    {
+      "icon": "0b836.svg",
+      "title": "Llegada e inspección",
+      "description": "Revisa la llegada al almacén y las fotos de inspección y organiza el envío.",
+      "id": "steps-3"
+    },
+    {
+      "icon": "cdc33.svg",
+      "title": "Consolida y envía",
+      "description": "Elige tus productos, ruta de envío y servicios de embalaje.",
+      "id": "steps-4"
+    }
+  ],
+  "stories": [
+    {
+      "photo": "8686e.png",
+      "category": "Armario diario / Ropa y calzado",
+      "title": "Una semana de looks en una caja.",
+      "id": "stories-1"
+    },
+    {
+      "photo": "d7d02.png",
+      "category": "Lista de estilo / Bolsos y accesorios",
+      "title": "Pequeños accesorios, grandes alegrías.",
+      "id": "stories-2"
+    },
+    {
+      "photo": "7727e.png",
+      "category": "Ideas para el hogar / Artículos de uso diario",
+      "title": "Añade algo nuevo a tu día a día.",
+      "id": "stories-3"
+    }
+  ]
+}

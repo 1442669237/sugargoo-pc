@@ -10,9 +10,9 @@ import {
   initializeLanguage,
   languageForCountry,
   languageKey,
-  translate,
+  i18n,
+  t,
 } from '../src/i18n/index.js'
-import { messages } from '../src/i18n/messages.js'
 import { cny, currencyKey, formatPrice, validCurrencies } from '../src/utils/currency.js'
 import request from '../src/utils/request.js'
 import { useSettingsStore } from '../src/stores/settings.js'
@@ -112,43 +112,78 @@ test('local currencies retain the supplied envelope and reject invalid calls', a
   )
 })
 
-test('three-language responses translate every demo text without changing identifiers or amounts', async () => {
-  function collect(value) {
-    if (typeof value === 'string') return /[\u3400-\u9fff]/.test(value) ? [value] : []
-    return value && typeof value === 'object' ? Object.values(value).flatMap(collect) : []
+test('frontend locale resources have identical semantic keys and interpolation parameters', async () => {
+  function flatten(value, prefix = '') {
+    return Object.fromEntries(
+      Object.entries(value).flatMap(([key, item]) => {
+        const path = prefix ? `${prefix}.${key}` : key
+        return typeof item === 'string' ? [[path, item]] : Object.entries(flatten(item, path))
+      }),
+    )
   }
-  const chinese = await (
-    await fetch(base + '/home', { headers: { 'Accept-Language': 'zh-CN' } })
-  ).json()
-  for (const text of collect(chinese)) assert.ok(messages[text], 'Missing translation: ' + text)
-  for (const language of ['zh-CN', 'en-US', 'es-ES']) {
-    const headers = { 'Accept-Language': language }
-    const home = await (await fetch(base + '/home', { headers })).json()
-    assert.equal(home.categories[0].code, 'all')
-    assert.equal(home.products[0].categoryCode, 'shoes')
-    assert.equal(home.footerGroups[0].links[0].target, '#process')
-    assert.equal(home.products[0].name, translate(chinese.products[0].name, language))
-    if (language !== 'zh-CN') assert.deepEqual(collect(home), [])
-    const products = await (await fetch(base + '/products?category=shoes', { headers })).json()
-    assert.equal(products.length, 2)
-    const estimate = await (
-      await fetch(base + '/shipping/estimate', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ destination: 'US', goodsType: 'clothing', weight: 1000 }),
-      })
-    ).json()
-    assert.equal(estimate.currency, 'CNY')
-    assert.equal(estimate.amount, 86)
-    assert.equal(estimate.destination, translate('美国', language))
-    assert.equal(estimate.route, translate('专线运输', language))
-    const invalid = await fetch(base + '/shipping/estimate', {
-      method: 'POST',
-      headers,
-      body: '{"weight":0}',
+  const resources = await Promise.all(
+    ['zh-CN', 'en-US', 'es-ES'].map(async (language) =>
+      flatten(
+        JSON.parse(
+          await readFile(new URL(`../src/i18n/locales/${language}.json`, import.meta.url)),
+        ),
+      ),
+    ),
+  )
+  const keys = Object.keys(resources[0]).sort()
+  for (const resource of resources) {
+    assert.deepEqual(Object.keys(resource).sort(), keys)
+    for (const key of keys) {
+      assert.match(key, /^[a-zA-Z]+\.[a-zA-Z]+$/)
+      assert.deepEqual(
+        [...resource[key].matchAll(/\{(\w+)\}/g)].map((match) => match[1]).sort(),
+        [...resources[0][key].matchAll(/\{(\w+)\}/g)].map((match) => match[1]).sort(),
+        key,
+      )
+    }
+  }
+  await initializeLanguage({ cached: 'es-ES' })
+  assert.equal(t('common.confirm'), 'Entendido')
+  assert.equal(
+    t('products.demoDescription', { description: 'Producto {sku} @ tienda' }),
+    'Producto {sku} @ tienda. Este producto es de demostración y aún no se puede comprar.',
+  )
+  const spanish = i18n.global.getLocaleMessage('es-ES')
+  try {
+    i18n.global.setLocaleMessage('es-ES', {
+      ...spanish,
+      common: { ...spanish.common, confirm: undefined },
     })
-    assert.equal(invalid.status, 400)
-    if (language !== 'zh-CN') assert.deepEqual(collect(await invalid.json()), [])
+    assert.equal(t('common.confirm'), 'Got it')
+  } finally {
+    i18n.global.setLocaleMessage('es-ES', spanish)
+  }
+})
+
+test('server business error messages pass through unchanged; client network errors are localized', async () => {
+  await initializeLanguage({ cached: 'es-ES' })
+  const adapter = request.defaults.adapter
+  try {
+    request.defaults.adapter = async (config) => {
+      throw new axios.AxiosError(
+        'Request failed',
+        'ERR_BAD_REQUEST',
+        config,
+        {},
+        { status: 400, data: { code: 'TEST_ERROR', message: 'common.confirm {sku}' } },
+      )
+    }
+    await assert.rejects(
+      request.get('/test'),
+      (error) =>
+        error.message === 'common.confirm {sku}' && error.response.data.code === 'TEST_ERROR',
+    )
+    request.defaults.adapter = async (config) => {
+      throw new axios.AxiosError('Network error', 'ERR_NETWORK', config, {})
+    }
+    await assert.rejects(request.get('/test'), { message: 'Error de conexión. Comprueba tu red' })
+  } finally {
+    request.defaults.adapter = adapter
   }
 })
 

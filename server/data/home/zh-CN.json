@@ -37,58 +37,73 @@
       "links": [
         {
           "label": "如何代购",
-          "target": "#process"
+          "target": "#process",
+          "id": "footerGroups-1-link-1"
         },
         {
           "label": "商品搜索",
-          "target": "#search"
+          "target": "#search",
+          "id": "footerGroups-1-link-2"
         },
         {
-          "label": "订单管理"
+          "label": "订单管理",
+          "id": "footerGroups-1-link-3"
         },
         {
-          "label": "费用说明"
+          "label": "费用说明",
+          "id": "footerGroups-1-link-4"
         }
-      ]
+      ],
+      "id": "footerGroups-1"
     },
     {
       "title": "物流与仓库",
       "links": [
         {
           "label": "运费估算",
-          "target": "#shipping"
+          "target": "#shipping",
+          "id": "footerGroups-2-link-1"
         },
         {
           "label": "运输线路",
-          "target": "#shipping"
+          "target": "#shipping",
+          "id": "footerGroups-2-link-2"
         },
         {
-          "label": "我的仓库"
+          "label": "我的仓库",
+          "id": "footerGroups-2-link-3"
         },
         {
-          "label": "包裹查询"
+          "label": "包裹查询",
+          "id": "footerGroups-2-link-4"
         }
-      ]
+      ],
+      "id": "footerGroups-2"
     },
     {
       "title": "关于我们",
       "links": [
         {
-          "label": "关于 SUGARGOO"
+          "label": "关于 SUGARGOO",
+          "id": "footerGroups-3-link-1"
         },
         {
           "label": "帮助中心",
-          "target": "#help"
+          "target": "#help",
+          "id": "footerGroups-3-link-2"
         },
         {
           "label": "联系我们",
-          "target": "#help"
+          "target": "#help",
+          "id": "footerGroups-3-link-3"
         },
         {
           "label": "分享社区",
-          "target": "#stories"
+          "target": "#stories",
+          "id": "footerGroups-3-link-4"
         }
-      ]
+      ],
+      "id": "footerGroups-3"
     }
   ],
   "offers": [
@@ -97,14 +112,16 @@
       "title": "第一次代购？从这里开始。",
       "description": "了解新用户活动，开启你的第一份购物清单。",
       "action": "查看新人优惠 →",
-      "icon": "96471.svg"
+      "icon": "96471.svg",
+      "id": "offers-1"
     },
     {
       "label": "运费优惠",
       "title": "给寄送计划，多一点优惠。",
       "description": "前往优惠券中心，查看可用的寄送优惠。",
       "action": "前往优惠券中心 →",
-      "icon": "30d0e.svg"
+      "icon": "30d0e.svg",
+      "id": "offers-2"
     }
   ],
   "products": [
@@ -178,23 +195,28 @@
   "questions": [
     {
       "title": "如何通过商品链接下单？",
-      "answer": "复制商品页面链接，粘贴到首页搜索框。确认商品规格、数量及订单信息后，按页面提示完成下单；无法识别的链接可通过手动下单提交。"
+      "answer": "复制商品页面链接，粘贴到首页搜索框。确认商品规格、数量及订单信息后，按页面提示完成下单；无法识别的链接可通过手动下单提交。",
+      "id": "questions-1"
     },
     {
       "title": "商品到仓后，在哪里查看质检照片？",
-      "answer": "商品入库后，可在「我的仓库」中查看商品信息与质检照片。本页面为静态演示，仓库内容暂未接入。"
+      "answer": "商品入库后，可在「我的仓库」中查看商品信息与质检照片。本页面为静态演示，仓库内容暂未接入。",
+      "id": "questions-2"
     },
     {
       "title": "不同店铺购买的商品可以一起寄送吗？",
-      "answer": "商品到仓后，可选择需要寄出的商品合箱寄送。具体合箱方式与可寄范围以实际服务说明为准。"
+      "answer": "商品到仓后，可选择需要寄出的商品合箱寄送。具体合箱方式与可寄范围以实际服务说明为准。",
+      "id": "questions-3"
     },
     {
       "title": "国际运费如何计算？",
-      "answer": "运费通常根据目的地、计费重量和所选线路计算。可通过上方运费工具体验查询流程，演示结果仅为 mock 数据。"
+      "answer": "运费通常根据目的地、计费重量和所选线路计算。可通过上方运费工具体验查询流程，演示结果仅为 mock 数据。",
+      "id": "questions-4"
     },
     {
       "title": "哪些商品有国际寄送限制？",
-      "answer": "不同国家、地区及运输线路的限制可能不同。寄送前请查看对应线路说明，或联系在线客服确认。"
+      "answer": "不同国家、地区及运输线路的限制可能不同。寄送前请查看对应线路说明，或联系在线客服确认。",
+      "id": "questions-5"
     }
   ],
   "routes": [
@@ -203,21 +225,24 @@
       "label": "轻小件寄送参考",
       "icon": "8f81e.svg",
       "tone": "green",
-      "description": "先查看目的地是否有可用邮政服务，再比较计费方式与重量限制。"
+      "description": "先查看目的地是否有可用邮政服务，再比较计费方式与重量限制。",
+      "id": "routes-1"
     },
     {
       "title": "专线运输",
       "label": "日常购物寄送参考",
       "icon": "f1d0e.svg",
       "tone": "peach",
-      "description": "根据目的地筛选专线，重点核对可寄商品、包裹限制与清关说明。"
+      "description": "根据目的地筛选专线，重点核对可寄商品、包裹限制与清关说明。",
+      "id": "routes-2"
     },
     {
       "title": "商业快递",
       "label": "多种寄送需求参考",
       "icon": "6420b.svg",
       "tone": "purple",
-      "description": "结合包裹体积和重量比较方案，查看对应线路的费用与服务说明。"
+      "description": "结合包裹体积和重量比较方案，查看对应线路的费用与服务说明。",
+      "id": "routes-3"
     }
   ],
   "shortcuts": [
@@ -225,63 +250,74 @@
       "title": "运费估算",
       "description": "先了解寄送成本",
       "icon": "0be24.svg",
-      "target": "#shipping"
+      "target": "#shipping",
+      "id": "shortcuts-1"
     },
     {
       "title": "我的仓库",
       "description": "查看入库与包裹",
-      "icon": "a0807.svg"
+      "icon": "a0807.svg",
+      "id": "shortcuts-2"
     },
     {
       "title": "优惠券中心",
       "description": "发现当期活动",
       "icon": "23594.svg",
-      "target": "#offers"
+      "target": "#offers",
+      "id": "shortcuts-3"
     },
     {
       "title": "在线客服",
       "description": "购物疑问，随时咨询",
       "icon": "bdc1b.svg",
-      "target": "#help"
+      "target": "#help",
+      "id": "shortcuts-4"
     }
   ],
   "steps": [
     {
       "icon": "5637f.svg",
       "title": "找到心动商品",
-      "description": "粘贴商品链接，确认规格与数量，提交代购订单。"
+      "description": "粘贴商品链接，确认规格与数量，提交代购订单。",
+      "id": "steps-1"
     },
     {
       "icon": "ef19a.svg",
       "title": "我们为你采购",
-      "description": "跟进购买与国内配送，在订单中查看处理进度。"
+      "description": "跟进购买与国内配送，在订单中查看处理进度。",
+      "id": "steps-2"
     },
     {
       "icon": "0b836.svg",
       "title": "入库，查看质检",
-      "description": "商品到仓后查看入库信息与质检照片，再安排寄送。"
+      "description": "商品到仓后查看入库信息与质检照片，再安排寄送。",
+      "id": "steps-3"
     },
     {
       "icon": "cdc33.svg",
       "title": "合箱寄向你",
-      "description": "选择需要寄出的商品、运输线路与包装服务。"
+      "description": "选择需要寄出的商品、运输线路与包装服务。",
+      "id": "steps-4"
     }
   ],
   "stories": [
     {
       "photo": "8686e.png",
       "category": "日常衣橱 / 服饰与鞋履",
-      "title": "把一周穿搭，装进一箱。"
+      "title": "把一周穿搭，装进一箱。",
+      "id": "stories-1"
     },
     {
       "photo": "d7d02.png",
       "category": "风格清单 / 箱包与配饰",
-      "title": "小配饰，也有大快乐。"
+      "title": "小配饰，也有大快乐。",
+      "id": "stories-2"
     },
     {
       "photo": "7727e.png",
       "category": "生活灵感 / 日用好物",
-      "title": "给平凡日常，添一点新意。"
+      "title": "给平凡日常，添一点新意。",
+      "id": "stories-3"
     }
   ]
 }

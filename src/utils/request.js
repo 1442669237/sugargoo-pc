@@ -15,11 +15,11 @@ request.interceptors.request.use(
 )
 
 const statusMessages = {
-  400: '请求参数有误',
-  401: '请先登录或重新登录',
-  403: '没有操作权限',
-  404: '请求的资源不存在',
-  429: '操作过于频繁，请稍后重试',
+  400: 'errors.invalidRequest',
+  401: 'errors.unauthorized',
+  403: 'errors.forbidden',
+  404: 'errors.notFound',
+  429: 'errors.tooManyRequests',
 }
 
 request.interceptors.response.use(
@@ -28,11 +28,15 @@ request.interceptors.response.use(
     if (axios.isCancel(error)) return Promise.reject(error)
 
     if (error.code === 'ECONNABORTED' || error.code === 'ETIMEDOUT') {
-      error.message = t('请求超时，请稍后重试')
+      error.message = t('errors.timeout')
     } else if (error.response) {
-      error.message = t(statusMessages[error.response.status] || '请求失败，请稍后重试')
+      const message = error.response.data?.message
+      error.message =
+        typeof message === 'string' && message.trim()
+          ? message
+          : t(statusMessages[error.response.status] || 'errors.requestFailed')
     } else if (error.request) {
-      error.message = t('网络连接失败，请检查网络')
+      error.message = t('errors.network')
     }
 
     // 保留 AxiosError 的 response、code 等信息，由业务页面展示错误。

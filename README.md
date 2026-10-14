@@ -62,8 +62,10 @@ src/
 ```text
 server/
 ├── index.js          # HTTP 接口服务
+├── locale.js         # 独立的服务端语言解析
 └── data/
-    ├── home.json       # 首页演示数据
+    ├── locales.json    # 运费字段和错误消息
+    ├── home/           # zh-CN、en-US、es-ES 三语业务数据
     └── currencies.json # 币种与汇率快照
 scripts/dev.js        # 同时启动前端与 API
 ```
@@ -71,14 +73,14 @@ scripts/dev.js        # 同时启动前端与 API
 | 方法 | 接口                                     | 用途                                   |
 | ---- | ---------------------------------------- | -------------------------------------- |
 | GET  | `/api/home`                              | 全部首页数据：商品、活动、服务、FAQ 等 |
-| GET  | `/api/products`                          | 商品列表，可传 `?category=服饰`        |
+| GET  | `/api/products`                          | 商品列表，可传 `?category=clothing`    |
 | POST | `/api/shipping/estimate`                 | mock 运费估算                          |
 | POST | `/api/system/sysConfigCurrency/queryNew` | 币种与汇率，接收 `{"front":1}`         |
 
 运费接口接收 JSON，例如：
 
 ```json
-{ "destination": "美国", "goodsType": "普通服饰", "weight": 1000 }
+{ "destination": "US", "goodsType": "clothing", "weight": 1000 }
 ```
 
 前端接口集中在 `src/api/home.js`，继续复用 Axios 请求和响应拦截器。数据加载失败时首页显示提示并支持重新加载。
@@ -91,7 +93,7 @@ scripts/dev.js        # 同时启动前端与 API
 - Noto Sans SC 与 Inter 字体保存在 `public/fonts/`，无需运行时访问外部字体服务。字体采用 SIL Open Font License，许可文件同目录保存。
 - 支持商品分类筛选、收藏、商品展示弹窗、FAQ 展开、搜索入口和本地 mock 运费估算。
 - 登录、仓库、活动及社区等入口提供演示提示；页头、页脚支持切换语言和币种。
-- 保持 JavaScript 和精简组件结构；没有新增运行时依赖。小屏布局随宽度调整，桌面端以 Figma 为准。
+- 使用 JavaScript；前端国际化使用 Vue I18n。小屏布局随宽度调整，桌面端以 Figma 为准。
 
 ## 接口请求
 
@@ -128,7 +130,7 @@ await post('/uploads', form)
 
 ## 多语言与多币种
 
-支持 `zh-CN`、`en-US`、`es-ES`，前端文案与本地演示数据共用 `src/i18n/messages.js` 字典，不额外引入国际化依赖。首次访问由浏览器请求 `https://api.country.is/` 识别访问者 IP 国家：`CN/HK/MO/TW` 使用中文，西语国家和地区使用西班牙语，其余使用英语。查询超时为 3 秒，失败时按浏览器语言兜底，再回退英语。语言初始化完成后才发送业务请求。
+支持 `zh-CN`、`en-US`、`es-ES`。前端使用 Vue I18n，三个语言资源独立放在 `src/i18n/locales/`，使用 `common.confirm`、`shipping.weightLabel` 等语义 key。资源只包含前端管理的界面文案。商品、活动、FAQ、分类、线路等业务文本由后端维护在 `server/data/home/{language}.json`，前端直接展示接口字段，不传入 `t()`。首次访问由浏览器请求 `https://api.country.is/` 识别访问者 IP 国家：`CN/HK/MO/TW` 使用中文，西语国家和地区使用西班牙语，其余使用英语。查询超时为 3 秒，失败时按浏览器语言兜底，再回退英语。语言初始化完成后才发送业务请求。
 
 语言保存在 `sugargoo.language`。手动选择不同语言先缓存，再刷新整页；再次选择当前语言不刷新。请求头、页面标题、HTML `lang`、表单及错误提示均使用当前语言。本地首页与商品接口的分类使用稳定的 `code/categoryCode`，页脚链接使用 `label/target`，避免翻译影响筛选和跳转；运费表单提交国家和商品类型代码，接口返回对应语言文本。
 
@@ -139,3 +141,13 @@ await post('/uploads', form)
 无效缓存币种优先回退 USD；汇率加载失败时显示人民币并提供重试按钮，同时保留用户的币种偏好，以便重试成功后恢复。语言和币种优先保存在 localStorage，受限时尝试 sessionStorage；两者均不可用时只能保持当前页面的选择。
 
 `npm test` 使用 Node 原生测试，验证语言识别和缓存、请求头、本地三语响应、币种接口、换算、无效数据及失败重试。浏览器联调还应检查手动切换语言的刷新次数、币种切换期间的请求数量，以及桌面和小屏的布局与交互。
+
+### 前后端多语言职责
+
+本地服务独立读取 `Accept-Language`，支持带地区的语言标签和 `q` 权重；缺省或不支持的语言回退 `en-US`。响应携带 `Content-Language` 和 `Vary: Accept-Language`。服务端没有对 `src/`、Vue I18n 或前端语言资源的依赖，运行仅需要 `server/` 下的文件和 Node.js。
+
+修改 `server/data/home/es-ES.json` 的商品名称后，刷新页面即可获得新内容，无需构建前端。各语言版本通过产品 ID、分类代码及内容 ID 对齐，不通过中文文案查找翻译。业务字段包含花括号、类似 `common.confirm` 的文本时，前端按原文展示，使用 Vue 文本插值转义 HTML。
+
+运费结果中的国家、商品类型、线路名称和服务端错误文案维护在 `server/data/locales.json`，以国家代码、商品类型代码和稳定错误代码索引。错误响应为 `{ code, message }`，前端保留服务端的 `message`；无服务端消息的 HTTP 错误、网络错误和超时使用前端本地化兜底。ID、代码、金额及请求参数不参与文本翻译。
+
+前端语言缺失时由 Vue I18n 回退英语。新增界面文案时应给三个语言文件添加同一个语义 key，并保持插值参数一致；测试检查资源一致性。接口测试用独立预期值验证三语数据，同时在不含前端目录的临时环境中验证服务可独立运行及业务数据修改即时生效。

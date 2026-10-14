@@ -1,0 +1,323 @@
+{
+  "assurances": [
+    ["Track your orders", "Clear purchase and warehouse updates"],
+    ["View inspections", "Inspect your items through warehouse photos"],
+    ["Manage your parcels", "Choose consolidation and packaging for your needs"],
+    ["Estimate shipping", "Compare routes and costs before shipping"]
+  ],
+  "categories": [
+    {
+      "code": "all",
+      "label": "All picks"
+    },
+    {
+      "code": "clothing",
+      "label": "Clothing"
+    },
+    {
+      "code": "shoes",
+      "label": "Shoes"
+    },
+    {
+      "code": "bags",
+      "label": "Bags"
+    },
+    {
+      "code": "accessories",
+      "label": "Accessories"
+    },
+    {
+      "code": "lifestyle",
+      "label": "Lifestyle"
+    }
+  ],
+  "footerGroups": [
+    {
+      "title": "Shopping guide",
+      "links": [
+        {
+          "label": "How to shop",
+          "target": "#process",
+          "id": "footerGroups-1-link-1"
+        },
+        {
+          "label": "Product search",
+          "target": "#search",
+          "id": "footerGroups-1-link-2"
+        },
+        {
+          "label": "Order management",
+          "id": "footerGroups-1-link-3"
+        },
+        {
+          "label": "Fees explained",
+          "id": "footerGroups-1-link-4"
+        }
+      ],
+      "id": "footerGroups-1"
+    },
+    {
+      "title": "Shipping and storage",
+      "links": [
+        {
+          "label": "Shipping estimate",
+          "target": "#shipping",
+          "id": "footerGroups-2-link-1"
+        },
+        {
+          "label": "Shipping routes",
+          "target": "#shipping",
+          "id": "footerGroups-2-link-2"
+        },
+        {
+          "label": "My warehouse",
+          "id": "footerGroups-2-link-3"
+        },
+        {
+          "label": "Track parcels",
+          "id": "footerGroups-2-link-4"
+        }
+      ],
+      "id": "footerGroups-2"
+    },
+    {
+      "title": "About us",
+      "links": [
+        {
+          "label": "About SUGARGOO",
+          "id": "footerGroups-3-link-1"
+        },
+        {
+          "label": "Help center",
+          "target": "#help",
+          "id": "footerGroups-3-link-2"
+        },
+        {
+          "label": "Contact us",
+          "target": "#help",
+          "id": "footerGroups-3-link-3"
+        },
+        {
+          "label": "Community",
+          "target": "#stories",
+          "id": "footerGroups-3-link-4"
+        }
+      ],
+      "id": "footerGroups-3"
+    }
+  ],
+  "offers": [
+    {
+      "label": "New customer offers",
+      "title": "Your first order? Start here.",
+      "description": "Explore new customer offers and start your first wishlist.",
+      "action": "View new customer offers →",
+      "icon": "96471.svg",
+      "id": "offers-1"
+    },
+    {
+      "label": "Shipping offers",
+      "title": "A little extra savings for your shipping plans.",
+      "description": "Visit the coupon center for available shipping offers.",
+      "action": "Visit coupon center →",
+      "icon": "30d0e.svg",
+      "id": "offers-2"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Retro color-block sneakers",
+      "category": "Shoes",
+      "description": "Shoes / Everyday style",
+      "tag": "Style pick",
+      "photo": "f8598.png",
+      "categoryCode": "shoes"
+    },
+    {
+      "id": 2,
+      "name": "Classic black leather jacket",
+      "category": "Clothing",
+      "description": "Clothing / Premium outerwear",
+      "photo": "c28cf.png",
+      "categoryCode": "clothing"
+    },
+    {
+      "id": 3,
+      "name": "Lightweight mini bag · Bright orange",
+      "category": "Bags",
+      "description": "Bags / Travel accessories",
+      "tag": "Inspired pick",
+      "photo": "f626f.png",
+      "categoryCode": "bags"
+    },
+    {
+      "id": 4,
+      "name": "Relaxed crew-neck knit top",
+      "category": "Clothing",
+      "description": "Clothing / Everyday comfort",
+      "photo": "f0b00.png",
+      "categoryCode": "clothing"
+    },
+    {
+      "id": 5,
+      "name": "Retro olive bomber jacket",
+      "category": "Clothing",
+      "description": "Clothing / Layered style",
+      "photo": "8217f.png",
+      "categoryCode": "clothing"
+    },
+    {
+      "id": 6,
+      "name": "Minimal canvas low-top shoes",
+      "category": "Shoes",
+      "description": "Shoes / Casual outings",
+      "photo": "3461f.png",
+      "categoryCode": "shoes"
+    },
+    {
+      "id": 7,
+      "name": "City commuter canvas tote",
+      "category": "Bags",
+      "description": "Bags / Lifestyle",
+      "photo": "00528.png",
+      "categoryCode": "bags"
+    },
+    {
+      "id": 8,
+      "name": "Washed cotton baseball cap",
+      "category": "Accessories",
+      "description": "Accessories / Finishing touches",
+      "photo": "ff634.png",
+      "categoryCode": "accessories"
+    }
+  ],
+  "questions": [
+    {
+      "title": "How do I order using a product link?",
+      "answer": "Copy a product link into the homepage search box. Confirm the options, quantity and order details, then follow the checkout steps. Use manual ordering if the link cannot be recognized.",
+      "id": "questions-1"
+    },
+    {
+      "title": "Where can I see warehouse inspection photos?",
+      "answer": "After arrival, view item details and inspection photos in My warehouse. This demo does not include live warehouse data yet.",
+      "id": "questions-2"
+    },
+    {
+      "title": "Can items from different stores be shipped together?",
+      "answer": "Once items arrive, select them for consolidated shipping. See the service details for consolidation options and restrictions.",
+      "id": "questions-3"
+    },
+    {
+      "title": "How is international shipping calculated?",
+      "answer": "Shipping usually depends on destination, chargeable weight and route. Try the estimator above; results use demo data only.",
+      "id": "questions-4"
+    },
+    {
+      "title": "Which items have international shipping restrictions?",
+      "answer": "Restrictions vary by country, region and route. Check the route details or contact support before shipping.",
+      "id": "questions-5"
+    }
+  ],
+  "routes": [
+    {
+      "title": "Postal service",
+      "label": "For small, lightweight parcels",
+      "icon": "8f81e.svg",
+      "tone": "green",
+      "description": "Check postal availability at your destination, then compare pricing and weight limits.",
+      "id": "routes-1"
+    },
+    {
+      "title": "Dedicated shipping",
+      "label": "For everyday shopping parcels",
+      "icon": "f1d0e.svg",
+      "tone": "peach",
+      "description": "Filter dedicated routes by destination and check permitted items, parcel limits and customs guidance.",
+      "id": "routes-2"
+    },
+    {
+      "title": "Express courier",
+      "label": "For a range of shipping needs",
+      "icon": "6420b.svg",
+      "tone": "purple",
+      "description": "Compare options using parcel size and weight, and review route costs and service details.",
+      "id": "routes-3"
+    }
+  ],
+  "shortcuts": [
+    {
+      "title": "Shipping estimate",
+      "description": "Check shipping costs first",
+      "icon": "0be24.svg",
+      "target": "#shipping",
+      "id": "shortcuts-1"
+    },
+    {
+      "title": "My warehouse",
+      "description": "View stored items and parcels",
+      "icon": "a0807.svg",
+      "id": "shortcuts-2"
+    },
+    {
+      "title": "Coupon center",
+      "description": "Discover current offers",
+      "icon": "23594.svg",
+      "target": "#offers",
+      "id": "shortcuts-3"
+    },
+    {
+      "title": "Customer support",
+      "description": "Here to help with shopping questions",
+      "icon": "bdc1b.svg",
+      "target": "#help",
+      "id": "shortcuts-4"
+    }
+  ],
+  "steps": [
+    {
+      "icon": "5637f.svg",
+      "title": "Find your favorites",
+      "description": "Paste a product link, confirm options and quantity, then submit your order.",
+      "id": "steps-1"
+    },
+    {
+      "icon": "ef19a.svg",
+      "title": "We purchase for you",
+      "description": "Track purchases and domestic delivery through your order updates.",
+      "id": "steps-2"
+    },
+    {
+      "icon": "0b836.svg",
+      "title": "Arrival and inspection",
+      "description": "Check warehouse arrival details and inspection photos, then arrange shipping.",
+      "id": "steps-3"
+    },
+    {
+      "icon": "cdc33.svg",
+      "title": "Consolidate and ship",
+      "description": "Choose your items, shipping route and packaging services.",
+      "id": "steps-4"
+    }
+  ],
+  "stories": [
+    {
+      "photo": "8686e.png",
+      "category": "Everyday wardrobe / Clothing and shoes",
+      "title": "A week's outfits in one box.",
+      "id": "stories-1"
+    },
+    {
+      "photo": "d7d02.png",
+      "category": "Style wishlist / Bags and accessories",
+      "title": "Little accessories, big happiness.",
+      "id": "stories-2"
+    },
+    {
+      "photo": "7727e.png",
+      "category": "Lifestyle inspiration / Everyday essentials",
+      "title": "Add something new to your everyday life.",
+      "id": "stories-3"
+    }
+  ]
+}

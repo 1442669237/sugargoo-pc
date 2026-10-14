@@ -36,7 +36,7 @@ export const useSettingsStore = defineStore('settings', () => {
     } catch {
       currencies.value = [cny]
       currencyCode.value = 'CNY'
-      error.value = t('汇率加载失败，暂以人民币显示。')
+      error.value = t('settings.ratesUnavailable')
     } finally {
       loading.value = false
     }

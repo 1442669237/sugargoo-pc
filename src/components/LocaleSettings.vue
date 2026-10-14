@@ -8,7 +8,7 @@ const settings = useSettingsStore()
 <template>
   <div class="locale-settings">
     <label>
-      <span class="sr-only">{{ t('语言') }}</span>
+      <span class="sr-only">{{ t('settings.language') }}</span>
       <select :value="settings.language" @change="changeLanguage($event.target.value)">
         <option v-for="item in languages" :key="item.code" :value="item.code">
           {{ item.label }}
@@ -17,7 +17,7 @@ const settings = useSettingsStore()
     </label>
     <span aria-hidden="true">/</span>
     <label>
-      <span class="sr-only">{{ t('币种') }}</span>
+      <span class="sr-only">{{ t('settings.currency') }}</span>
       <select
         :value="settings.currencyCode"
         :disabled="settings.loading || !!settings.error"
@@ -29,11 +29,11 @@ const settings = useSettingsStore()
       </select>
     </label>
     <span v-if="settings.loading" class="currency-status" role="status">{{
-      t('加载汇率中…')
+      t('settings.loadingRates')
     }}</span>
     <span v-else-if="settings.error" class="currency-status" role="status">
       {{ settings.error }}
-      <button type="button" @click="settings.loadCurrencies(true)">{{ t('重试') }}</button>
+      <button type="button" @click="settings.loadCurrencies(true)">{{ t('common.retry') }}</button>
     </span>
   </div>
 </template>

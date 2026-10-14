@@ -1,0 +1,77 @@
+{
+  "zh-CN": {
+    "errors": {
+      "PAYLOAD_TOO_LARGE": "请求体不能超过 16KB",
+      "INVALID_JSON": "请求体必须为有效的 JSON",
+      "METHOD_GET_ONLY": "此接口仅支持 GET",
+      "METHOD_POST_ONLY": "此接口仅支持 POST",
+      "INVALID_SHIPPING_INPUT": "请选择目的地、商品类型，重量须大于 0 且不超过 1000000g",
+      "NOT_FOUND": "接口不存在",
+      "INTERNAL_ERROR": "本地服务读取数据失败，请检查 server/data/ 下的数据文件",
+      "INVALID_CURRENCY_QUERY": "币种查询参数有误"
+    },
+    "destinations": {
+      "US": "美国",
+      "GB": "英国",
+      "CA": "加拿大",
+      "AU": "澳大利亚",
+      "JP": "日本"
+    },
+    "goodsTypes": {
+      "clothing": "普通服饰",
+      "shoes": "鞋履箱包",
+      "household": "生活用品"
+    },
+    "route": "专线运输"
+  },
+  "en-US": {
+    "errors": {
+      "PAYLOAD_TOO_LARGE": "Request body must not exceed 16KB",
+      "INVALID_JSON": "Request body must be valid JSON",
+      "METHOD_GET_ONLY": "This endpoint only supports GET",
+      "METHOD_POST_ONLY": "This endpoint only supports POST",
+      "INVALID_SHIPPING_INPUT": "Select a destination and item type. Weight must be greater than 0 and at most 1000000g",
+      "NOT_FOUND": "Endpoint not found",
+      "INTERNAL_ERROR": "Could not read local data. Please check the files in server/data/",
+      "INVALID_CURRENCY_QUERY": "Invalid currency query parameters"
+    },
+    "destinations": {
+      "US": "United States",
+      "GB": "United Kingdom",
+      "CA": "Canada",
+      "AU": "Australia",
+      "JP": "Japan"
+    },
+    "goodsTypes": {
+      "clothing": "Clothing",
+      "shoes": "Shoes and bags",
+      "household": "Household items"
+    },
+    "route": "Dedicated shipping"
+  },
+  "es-ES": {
+    "errors": {
+      "PAYLOAD_TOO_LARGE": "El cuerpo de la solicitud no debe superar los 16KB",
+      "INVALID_JSON": "El cuerpo de la solicitud debe ser JSON válido",
+      "METHOD_GET_ONLY": "Este endpoint solo admite GET",
+      "METHOD_POST_ONLY": "Este endpoint solo admite POST",
+      "INVALID_SHIPPING_INPUT": "Selecciona destino y tipo de producto. El peso debe ser mayor que 0 y no superar 1000000g",
+      "NOT_FOUND": "Endpoint no encontrado",
+      "INTERNAL_ERROR": "No se pudieron leer los datos locales. Comprueba los archivos de server/data/",
+      "INVALID_CURRENCY_QUERY": "Parámetros de consulta de monedas incorrectos"
+    },
+    "destinations": {
+      "US": "Estados Unidos",
+      "GB": "Reino Unido",
+      "CA": "Canadá",
+      "AU": "Australia",
+      "JP": "Japón"
+    },
+    "goodsTypes": {
+      "clothing": "Ropa",
+      "shoes": "Zapatos y bolsos",
+      "household": "Artículos para el hogar"
+    },
+    "route": "Envío dedicado"
+  }
+}

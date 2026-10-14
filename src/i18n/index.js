@@ -1,4 +1,14 @@
-import { messages } from './messages.js'
+import { createI18n } from 'vue-i18n'
+import zhCN from './locales/zh-CN.json' with { type: 'json' }
+import enUS from './locales/en-US.json' with { type: 'json' }
+import esES from './locales/es-ES.json' with { type: 'json' }
+
+export const i18n = createI18n({
+  legacy: false,
+  locale: 'en-US',
+  fallbackLocale: 'en-US',
+  messages: { 'zh-CN': zhCN, 'en-US': enUS, 'es-ES': esES },
+})
 
 export const languages = [
   { code: 'zh-CN', label: '中文' },
@@ -6,7 +16,6 @@ export const languages = [
   { code: 'es-ES', label: 'Español' },
 ]
 export const languageKey = 'sugargoo.language'
-let language = 'en-US'
 
 export function normalizeLanguage(value = '') {
   const prefix = String(value)
@@ -15,14 +24,8 @@ export function normalizeLanguage(value = '') {
   return languages.find((item) => item.code.toLowerCase().startsWith(prefix + '-'))?.code
 }
 
-export function translate(text, locale = language, params = {}) {
-  const translated =
-    locale === 'zh-CN' ? text : messages[text]?.[locale === 'es-ES' ? 1 : 0] || text
-  return translated.replace(/\{(\w+)\}/g, (match, key) => params[key] ?? match)
-}
-
-export const t = (text, params) => translate(text, language, params)
-export const getLanguage = () => language
+export const t = (key, params = {}) => i18n.global.t(key, params)
+export const getLanguage = () => i18n.global.locale.value
 
 export function readPreference(key) {
   try {
@@ -65,6 +68,7 @@ export async function initializeLanguage({
   browserLanguages = globalThis.navigator?.languages || [],
   lookup = () => fetch('https://api.country.is/', { signal: AbortSignal.timeout(3000) }),
 } = {}) {
+  let language
   if (languages.some((item) => item.code === cached)) {
     language = cached
   } else {
@@ -79,13 +83,14 @@ export async function initializeLanguage({
     }
     savePreference(languageKey, language)
   }
+  i18n.global.locale.value = language
   if (globalThis.document) document.documentElement.lang = language
   return language
 }
 
 export function changeLanguage(next, reload = () => globalThis.location.reload()) {
-  if (next === language || !languages.some((item) => item.code === next)) return
+  if (next === getLanguage() || !languages.some((item) => item.code === next)) return
   savePreference(languageKey, next)
-  language = next
+  i18n.global.locale.value = next
   reload()
 }
