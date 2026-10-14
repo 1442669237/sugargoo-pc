@@ -11,6 +11,10 @@ export default defineConfig([
     files: ['**/*.{vue,js,mjs,jsx}'],
     languageOptions: { globals: globals.browser },
   },
+  {
+    files: ['server/**/*.js', 'scripts/**/*.js', 'vite.config.js'],
+    languageOptions: { globals: globals.node },
+  },
   js.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
