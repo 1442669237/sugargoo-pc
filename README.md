@@ -22,17 +22,18 @@ npm run dev
 
 ## 常用命令
 
-| 命令                   | 用途               |
-| ---------------------- | ------------------ |
-| `npm run dev`          | 同时启动前端与 API |
-| `npm run dev:web`      | 单独启动前端       |
-| `npm run dev:api`      | 单独启动 API       |
-| `npm run build`        | 生产构建           |
-| `npm run preview`      | 预览构建结果       |
-| `npm run lint`         | 检查代码规范       |
-| `npm run lint:fix`     | 自动修复规范问题   |
-| `npm run format`       | 格式化代码         |
-| `npm run format:check` | 检查格式           |
+| 命令                   | 用途                     |
+| ---------------------- | ------------------------ |
+| `npm run dev`          | 同时启动前端与 API       |
+| `npm run dev:web`      | 单独启动前端             |
+| `npm run dev:api`      | 单独启动 API             |
+| `npm run build`        | 生产构建                 |
+| `npm test`             | 语言、币种及本地接口测试 |
+| `npm run preview`      | 预览构建结果             |
+| `npm run lint`         | 检查代码规范             |
+| `npm run lint:fix`     | 自动修复规范问题         |
+| `npm run format`       | 格式化代码               |
+| `npm run format:check` | 检查格式                 |
 
 ## 目录
 
@@ -61,15 +62,18 @@ src/
 ```text
 server/
 ├── index.js          # HTTP 接口服务
-└── data/home.json    # 首页数据，修改后刷新页面即可生效
+└── data/
+    ├── home.json       # 首页演示数据
+    └── currencies.json # 币种与汇率快照
 scripts/dev.js        # 同时启动前端与 API
 ```
 
-| 方法 | 接口                     | 用途                                   |
-| ---- | ------------------------ | -------------------------------------- |
-| GET  | `/api/home`              | 全部首页数据：商品、活动、服务、FAQ 等 |
-| GET  | `/api/products`          | 商品列表，可传 `?category=服饰`        |
-| POST | `/api/shipping/estimate` | mock 运费估算                          |
+| 方法 | 接口                                     | 用途                                   |
+| ---- | ---------------------------------------- | -------------------------------------- |
+| GET  | `/api/home`                              | 全部首页数据：商品、活动、服务、FAQ 等 |
+| GET  | `/api/products`                          | 商品列表，可传 `?category=服饰`        |
+| POST | `/api/shipping/estimate`                 | mock 运费估算                          |
+| POST | `/api/system/sysConfigCurrency/queryNew` | 币种与汇率，接收 `{"front":1}`         |
 
 运费接口接收 JSON，例如：
 
@@ -86,7 +90,7 @@ scripts/dev.js        # 同时启动前端与 API
 - 图片与 SVG 图标保存在 `public/images/figma-home/`，使用设计稿原始素材；SVG 保留固有尺寸。
 - Noto Sans SC 与 Inter 字体保存在 `public/fonts/`，无需运行时访问外部字体服务。字体采用 SIL Open Font License，许可文件同目录保存。
 - 支持商品分类筛选、收藏、商品展示弹窗、FAQ 展开、搜索入口和本地 mock 运费估算。
-- 登录、仓库、活动及社区等入口提供静态演示提示；语言与币种仅按设计展示，暂未加入切换逻辑。
+- 登录、仓库、活动及社区等入口提供演示提示；页头、页脚支持切换语言和币种。
 - 保持 JavaScript 和精简组件结构；没有新增运行时依赖。小屏布局随宽度调整，桌面端以 Figma 为准。
 
 ## 接口请求
@@ -120,4 +124,18 @@ await post('/uploads', form)
 
 在 `.env.local` 中设置 `VITE_API_BASE_URL`；默认 `/api`，开发与预览模式已配置代理到本地 API 服务。默认超时为 15 秒，可在单次请求中用 `timeout` 覆盖。
 
-请求拦截器保留统一处理请求头的入口，Token 在真实认证接口接入后追加。响应拦截器直接返回 `response.data`，保留后端业务数据结构；HTTP 错误、超时与网络失败统一设置 `error.message` 后继续抛出，业务页面负责捕获并展示。原始 `error.response`、`error.code` 等信息仍可读取，主动取消的请求保留取消语义。
+请求拦截器统一设置当前语言的 `Accept-Language`；Token 在真实认证接口接入后追加。响应拦截器直接返回 `response.data`，保留后端业务数据结构；HTTP 错误、超时与网络失败统一设置 `error.message` 后继续抛出，业务页面负责捕获并展示。原始 `error.response`、`error.code` 等信息仍可读取，主动取消的请求保留取消语义。
+
+## 多语言与多币种
+
+支持 `zh-CN`、`en-US`、`es-ES`，前端文案与本地演示数据共用 `src/i18n/messages.js` 字典，不额外引入国际化依赖。首次访问由浏览器请求 `https://api.country.is/` 识别访问者 IP 国家：`CN/HK/MO/TW` 使用中文，西语国家和地区使用西班牙语，其余使用英语。查询超时为 3 秒，失败时按浏览器语言兜底，再回退英语。语言初始化完成后才发送业务请求。
+
+语言保存在 `sugargoo.language`。手动选择不同语言先缓存，再刷新整页；再次选择当前语言不刷新。请求头、页面标题、HTML `lang`、表单及错误提示均使用当前语言。本地首页与商品接口的分类使用稳定的 `code/categoryCode`，页脚链接使用 `label/target`，避免翻译影响筛选和跳转；运费表单提交国家和商品类型代码，接口返回对应语言文本。
+
+币种默认 USD，选择保存在 `sugargoo.currency`，与语言独立。每次页面启动调用一次本地币种接口，支持的币种和汇率以 `server/data/currencies.json` 为准。该文件是提供的接口响应快照，更新汇率需要更新此 JSON；运行时不依赖 `src/utils/data.json`，也不调用线上币种接口。`isAutoUpdate` 是快照字段，不代表本地服务会自动更新汇率。
+
+所有原始金额按人民币“元”保存。显示金额为人民币金额乘 `rate`，使用响应的 `symbol`，统一保留两位小数；`conversionRate` 和 `decimalPlaces` 不参与金额展示。切换币种只更新响应式展示，不刷新、不请求接口，也不清空表单。运费查询结果在弹窗和表单下方展示，可直接验证切换币种后的金额变化。商品数据尚无价格字段，因此没有添加虚构价格。
+
+无效缓存币种优先回退 USD；汇率加载失败时显示人民币并提供重试按钮，同时保留用户的币种偏好，以便重试成功后恢复。语言和币种优先保存在 localStorage，受限时尝试 sessionStorage；两者均不可用时只能保持当前页面的选择。
+
+`npm test` 使用 Node 原生测试，验证语言识别和缓存、请求头、本地三语响应、币种接口、换算、无效数据及失败重试。浏览器联调还应检查手动切换语言的刷新次数、币种切换期间的请求数量，以及桌面和小屏的布局与交互。

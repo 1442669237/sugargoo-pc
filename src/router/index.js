@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
+import { t } from '@/i18n'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +32,7 @@ const router = createRouter({
 router.afterEach((to, from, failure) => {
   if (failure) return
   const appName = import.meta.env.VITE_APP_NAME || 'SUGARGOO'
-  document.title = to.meta.title ? to.meta.title + ' · ' + appName : appName
+  document.title = to.meta.title ? t(to.meta.title) + ' · ' + appName : appName
 })
 
 export default router

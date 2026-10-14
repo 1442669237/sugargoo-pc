@@ -5,19 +5,90 @@
     ["包裹可管理", "按需要选择合箱与包装"],
     ["运费可估算", "寄送前了解线路与费用"]
   ],
-  "categories": ["全部推荐", "服饰", "鞋履", "箱包", "配饰", "生活好物"],
+  "categories": [
+    {
+      "code": "all",
+      "label": "全部推荐"
+    },
+    {
+      "code": "clothing",
+      "label": "服饰"
+    },
+    {
+      "code": "shoes",
+      "label": "鞋履"
+    },
+    {
+      "code": "bags",
+      "label": "箱包"
+    },
+    {
+      "code": "accessories",
+      "label": "配饰"
+    },
+    {
+      "code": "lifestyle",
+      "label": "生活好物"
+    }
+  ],
   "footerGroups": [
     {
       "title": "购物指南",
-      "links": ["如何代购", "商品搜索", "订单管理", "费用说明"]
+      "links": [
+        {
+          "label": "如何代购",
+          "target": "#process"
+        },
+        {
+          "label": "商品搜索",
+          "target": "#search"
+        },
+        {
+          "label": "订单管理"
+        },
+        {
+          "label": "费用说明"
+        }
+      ]
     },
     {
       "title": "物流与仓库",
-      "links": ["运费估算", "运输线路", "我的仓库", "包裹查询"]
+      "links": [
+        {
+          "label": "运费估算",
+          "target": "#shipping"
+        },
+        {
+          "label": "运输线路",
+          "target": "#shipping"
+        },
+        {
+          "label": "我的仓库"
+        },
+        {
+          "label": "包裹查询"
+        }
+      ]
     },
     {
       "title": "关于我们",
-      "links": ["关于 SUGARGOO", "帮助中心", "联系我们", "分享社区"]
+      "links": [
+        {
+          "label": "关于 SUGARGOO"
+        },
+        {
+          "label": "帮助中心",
+          "target": "#help"
+        },
+        {
+          "label": "联系我们",
+          "target": "#help"
+        },
+        {
+          "label": "分享社区",
+          "target": "#stories"
+        }
+      ]
     }
   ],
   "offers": [
@@ -43,14 +114,16 @@
       "category": "鞋履",
       "description": "鞋履 / 日常百搭",
       "tag": "风格之选",
-      "photo": "f8598.png"
+      "photo": "f8598.png",
+      "categoryCode": "shoes"
     },
     {
       "id": 2,
       "name": "经典黑色翻领皮夹克",
       "category": "服饰",
       "description": "服饰 / 质感外套",
-      "photo": "c28cf.png"
+      "photo": "c28cf.png",
+      "categoryCode": "clothing"
     },
     {
       "id": 3,
@@ -58,42 +131,48 @@
       "category": "箱包",
       "description": "箱包 / 出行配饰",
       "tag": "灵感推荐",
-      "photo": "f626f.png"
+      "photo": "f626f.png",
+      "categoryCode": "bags"
     },
     {
       "id": 4,
       "name": "宽松圆领针织上衣",
       "category": "服饰",
       "description": "服饰 / 舒适日常",
-      "photo": "f0b00.png"
+      "photo": "f0b00.png",
+      "categoryCode": "clothing"
     },
     {
       "id": 5,
       "name": "复古军绿飞行夹克",
       "category": "服饰",
       "description": "服饰 / 层次穿搭",
-      "photo": "8217f.png"
+      "photo": "8217f.png",
+      "categoryCode": "clothing"
     },
     {
       "id": 6,
       "name": "简约帆布低帮鞋",
       "category": "鞋履",
       "description": "鞋履 / 轻松出街",
-      "photo": "3461f.png"
+      "photo": "3461f.png",
+      "categoryCode": "shoes"
     },
     {
       "id": 7,
       "name": "城市通勤帆布托特包",
       "category": "箱包",
       "description": "箱包 / 生活方式",
-      "photo": "00528.png"
+      "photo": "00528.png",
+      "categoryCode": "bags"
     },
     {
       "id": 8,
       "name": "水洗棉棒球帽",
       "category": "配饰",
       "description": "配饰 / 造型点睛",
-      "photo": "ff634.png"
+      "photo": "ff634.png",
+      "categoryCode": "accessories"
     }
   ],
   "questions": [

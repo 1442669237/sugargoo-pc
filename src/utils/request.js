@@ -1,13 +1,14 @@
 import axios from 'axios'
+import { getLanguage, t } from '../i18n/index.js'
 
 const request = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: import.meta.env?.VITE_API_BASE_URL || '/api',
   timeout: 15000,
 })
 
 request.interceptors.request.use(
   (config) => {
-    // 统一请求头、Token 等配置在认证接口接入后从这里追加。
+    config.headers['Accept-Language'] = getLanguage()
     return config
   },
   (error) => Promise.reject(error),
@@ -27,11 +28,11 @@ request.interceptors.response.use(
     if (axios.isCancel(error)) return Promise.reject(error)
 
     if (error.code === 'ECONNABORTED' || error.code === 'ETIMEDOUT') {
-      error.message = '请求超时，请稍后重试'
+      error.message = t('请求超时，请稍后重试')
     } else if (error.response) {
-      error.message = statusMessages[error.response.status] || '请求失败，请稍后重试'
+      error.message = t(statusMessages[error.response.status] || '请求失败，请稍后重试')
     } else if (error.request) {
-      error.message = '网络连接失败，请检查网络'
+      error.message = t('网络连接失败，请检查网络')
     }
 
     // 保留 AxiosError 的 response、code 等信息，由业务页面展示错误。

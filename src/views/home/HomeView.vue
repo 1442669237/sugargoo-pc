@@ -5,6 +5,11 @@ import SectionHeading from '@/components/home/SectionHeading.vue'
 import ProductCard from '@/components/home/ProductCard.vue'
 import { image } from '@/utils/assets'
 import { getHome, getShippingEstimate } from '@/api/home'
+import LocaleSettings from '@/components/LocaleSettings.vue'
+import { useSettingsStore } from '@/stores/settings'
+import { t } from '@/i18n'
+
+const settings = useSettingsStore()
 
 const home = reactive({
   shortcuts: [],
@@ -52,11 +57,11 @@ const estimating = ref(false)
 
 const searchInput = ref(null)
 const search = ref('')
-const category = ref('全部推荐')
+const category = ref('all')
 const visibleProducts = computed(() =>
-  category.value === '全部推荐'
+  category.value === 'all'
     ? products.value
-    : products.value.filter((product) => product.category === category.value),
+    : products.value.filter((product) => product.categoryCode === category.value),
 )
 const openQuestion = ref(0)
 const destination = ref('')
@@ -66,15 +71,32 @@ const dialog = ref(null)
 const dialogTitle = ref('')
 const dialogText = ref('')
 const selectedProduct = ref(null)
+const shippingResult = ref(null)
+const showingShipping = ref(false)
+const shippingText = computed(() => {
+  const result = shippingResult.value
+  return result
+    ? t(
+        '{destination} · {goodsType} · {weight}g。{route}预估费用 {price}，预计 {days} 个工作日。以上为本地接口返回的 mock 数据。',
+        { ...result, price: settings.price(result.amount), days: result.estimatedDays },
+      )
+    : ''
+})
 
 function showMessage(title, text = '当前为首页静态演示，相关内容即将上线。') {
+  showingShipping.value = false
   selectedProduct.value = null
-  dialogTitle.value = title
-  dialogText.value = text
+  dialogTitle.value = t(title)
+  dialogText.value = t(text)
   dialog.value.showModal()
 }
 function showProduct(product) {
-  showMessage(product.name, `${product.description}。这是 mock 商品展示，暂不支持真实购买。`)
+  showMessage(
+    product.name,
+    t('{description}。这是 mock 商品展示，暂不支持真实购买。', {
+      description: product.description,
+    }),
+  )
   selectedProduct.value = product
 }
 function focusSearch() {
@@ -88,7 +110,9 @@ function submitSearch() {
   }
   showMessage(
     '商品搜索',
-    `已收到商品链接：${search.value.trim()}。当前使用 mock 数据，暂不解析真实商品链接。`,
+    t('已收到商品链接：{link}。当前使用 mock 数据，暂不解析真实商品链接。', {
+      link: search.value.trim(),
+    }),
   )
 }
 async function estimateShipping() {
@@ -105,33 +129,16 @@ async function estimateShipping() {
       goodsType: goodsType.value,
       weight: amount,
     })
-    showMessage(
-      '运费估算 · 演示结果',
-      `${result.destination} · ${result.goodsType} · ${result.weight}g。${result.route}预估费用 ¥${result.amount.toFixed(2)}，预计 ${result.estimatedDays} 个工作日。以上为本地接口返回的 mock 数据。`,
-    )
+    shippingResult.value = result
+    showMessage('运费估算 · 演示结果')
+    showingShipping.value = true
   } catch (error) {
     showMessage('运费查询失败', error.response?.data?.message || error.message)
   } finally {
     estimating.value = false
   }
 }
-function navigate(label) {
-  const destinations = {
-    首页: '#top',
-    优惠券中心: '#offers',
-    在线客服: '#help',
-    发现好物: '#products',
-    商品搜索: '#search',
-    国际运费: '#shipping',
-    运费估算: '#shipping',
-    运输线路: '#shipping',
-    代购指南: '#process',
-    如何代购: '#process',
-    帮助中心: '#help',
-    联系我们: '#help',
-    分享社区: '#stories',
-  }
-  const target = destinations[label]
+function navigate(label, target) {
   if (target === '#search') focusSearch()
   else if (target) document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' })
   else showMessage(label)
@@ -142,32 +149,32 @@ function navigate(label) {
   <div id="top" class="home-page">
     <header>
       <div class="announcement">
-        <p>你的中国购物清单，从这里寄往世界。</p>
-        <a href="#process">了解代购服务 →</a>
+        <p>{{ t('你的中国购物清单，从这里寄往世界。') }}</p>
+        <a href="#process">{{ t('了解代购服务 →') }}</a>
       </div>
       <div class="main-nav page-width">
-        <a class="wordmark" href="#top" aria-label="SUGARGOO 首页">SUGARGOO</a>
-        <nav aria-label="主导航">
+        <a class="wordmark" href="#top" :aria-label="t('SUGARGOO 首页')">SUGARGOO</a>
+        <nav :aria-label="t('主导航')">
           <a
             v-for="(label, index) in ['首页', '发现好物', '国际运费', '代购指南', '帮助中心']"
             :key="label"
             :href="['#top', '#products', '#shipping', '#process', '#help'][index]"
             :class="{ active: index === 0 }"
-            >{{ label }}</a
+            >{{ t(label) }}</a
           >
         </nav>
         <div class="nav-tools">
-          <span class="locale-display">中文 / JPY⌄</span>
+          <LocaleSettings />
           <button
             type="button"
-            aria-label="购物车"
+            :aria-label="t('购物车')"
             @click="showMessage('购物车', '购物车还是空的，先发现一些心动好物吧。')"
           >
             <DesignIcon name="28d44.svg" />
           </button>
-          <button class="login" type="button" @click="showMessage('登录')">登录</button>
+          <button class="login" type="button" @click="showMessage('登录')">{{ t('登录') }}</button>
           <button class="primary-button register" type="button" @click="showMessage('注册')">
-            注册 <DesignIcon name="22410.svg" />
+            {{ t('注册') }} <DesignIcon name="22410.svg" />
           </button>
         </div>
       </div>
@@ -175,20 +182,26 @@ function navigate(label) {
 
     <main id="main-content" tabindex="-1" :aria-busy="loading">
       <div v-if="loading || loadError" class="data-status" role="status" aria-live="polite">
-        <span v-if="loading">正在获取首页数据…</span>
+        <span v-if="loading">{{ t('正在获取首页数据…') }}</span>
         <template v-else
-          ><span>首页数据加载失败：{{ loadError }}。请确认本地 API 服务已启动。</span
+          ><span>{{
+            t('首页数据加载失败：{error}。请确认本地 API 服务已启动。', { error: loadError })
+          }}</span
           ><button class="outline-button" type="button" @click="loadHome">
-            重新加载
+            {{ t('重新加载') }}
           </button></template
         >
       </div>
       <section class="hero page-width" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="hero-eyebrow eyebrow"><span></span>SHOP IN CHINA. SHIP WORLDWIDE.</p>
-          <h1 id="hero-title">心动的中国好物，<br /><span>轻松购向世界。</span></h1>
+          <p class="hero-eyebrow eyebrow"><span></span>{{ t('SHOP IN CHINA. SHIP WORLDWIDE.') }}</p>
+          <h1 id="hero-title">
+            {{ t('心动的中国好物，') }}<br /><span>{{ t('轻松购向世界。') }}</span>
+          </h1>
           <p class="hero-description">
-            从商品代购、入库验货到合箱寄送，<br />SUGARGOO 帮你把购物灵感，变成收到包裹的快乐。
+            {{ t('从商品代购、入库验货到合箱寄送，') }}<br />{{
+              t('SUGARGOO 帮你把购物灵感，变成收到包裹的快乐。')
+            }}
           </p>
           <div id="search" class="search-area">
             <form class="search-form" @submit.prevent="submitSearch">
@@ -197,21 +210,23 @@ function navigate(label) {
                   ref="searchInput"
                   v-model="search"
                   type="text"
-                  aria-label="商品链接"
-                  placeholder="粘贴商品链接，开始代购"
+                  :aria-label="t('商品链接')"
+                  :placeholder="t('粘贴商品链接，开始代购')"
               /></label>
               <button class="primary-button" type="submit">
-                搜索商品 <DesignIcon name="22410.svg" />
+                {{ t('搜索商品') }} <DesignIcon name="22410.svg" />
               </button>
             </form>
             <div class="search-help">
-              <p>复制商品页链接 → 粘贴搜索 → 确认商品</p>
-              <button type="button" @click="showMessage('手动下单')">找不到商品？手动下单 ↗</button>
+              <p>{{ t('复制商品页链接 → 粘贴搜索 → 确认商品') }}</p>
+              <button type="button" @click="showMessage('手动下单')">
+                {{ t('找不到商品？手动下单 ↗') }}
+              </button>
             </div>
           </div>
           <ul class="hero-benefits">
             <li v-for="benefit in ['代购协助', '入库质检', '合箱寄送']" :key="benefit">
-              <DesignIcon name="f4ba0.svg" />{{ benefit }}
+              <DesignIcon name="f4ba0.svg" />{{ t(benefit) }}
             </li>
           </ul>
         </div>
@@ -219,15 +234,15 @@ function navigate(label) {
           <img
             class="hero-photo"
             :src="image('2ef26.png')"
-            alt="阳光下的购物纸箱、鞋履与橙色肩包"
+            :alt="t('阳光下的购物纸箱、鞋履与橙色肩包')"
             width="554"
             height="460"
             fetchpriority="high"
           />
-          <p class="photo-kicker">YOUR NEXT GOOD FIND</p>
+          <p class="photo-kicker">{{ t('YOUR NEXT GOOD FIND') }}</p>
           <div class="photo-caption">
-            <h2>一份清单，无限灵感。</h2>
-            <p>日常穿搭 · 潮流配饰 · 生活好物</p>
+            <h2>{{ t('一份清单，无限灵感。') }}</h2>
+            <p>{{ t('日常穿搭 · 潮流配饰 · 生活好物') }}</p>
           </div>
         </div>
       </section>
@@ -237,7 +252,7 @@ function navigate(label) {
           :key="shortcut.title"
           class="shortcut"
           type="button"
-          @click="shortcut.target ? navigate(shortcut.title) : showMessage(shortcut.title)"
+          @click="navigate(shortcut.title, shortcut.target)"
         >
           <DesignIcon :name="shortcut.icon" /><span class="shortcut-copy"
             ><strong>{{ shortcut.title }}</strong
@@ -248,9 +263,9 @@ function navigate(label) {
 
       <section id="offers" class="offers-section section white-section page-width">
         <SectionHeading
-          eyebrow="A LITTLE EXTRA JOY"
-          title="好物值得，优惠也别错过。"
-          action="查看全部活动"
+          :eyebrow="t('A LITTLE EXTRA JOY')"
+          :title="t('好物值得，优惠也别错过。')"
+          :action="t('查看全部活动')"
           @action="showMessage('优惠活动')"
         />
         <div class="offers-grid">
@@ -281,42 +296,42 @@ function navigate(label) {
         </div>
         <article class="special-offer">
           <div class="special-copy">
-            <p class="eyebrow">SPECIAL PICKS / 特别促销</p>
-            <h3>换个穿搭，发现新的自己。</h3>
-            <p>精选服饰与配饰，把日常灵感加入购物清单。</p>
+            <p class="eyebrow">{{ t('SPECIAL PICKS / 特别促销') }}</p>
+            <h3>{{ t('换个穿搭，发现新的自己。') }}</h3>
+            <p>{{ t('精选服饰与配饰，把日常灵感加入购物清单。') }}</p>
             <a class="primary-button" href="#products"
-              >探索特别促销 <DesignIcon name="22410.svg"
+              >{{ t('探索特别促销') }} <DesignIcon name="22410.svg"
             /></a>
           </div>
           <img
             :src="image('782ba.png')"
-            alt="橙色肩包与深色服饰的特别促销陈列"
+            :alt="t('橙色肩包与深色服饰的特别促销陈列')"
             width="560"
             height="236"
             loading="lazy"
           />
         </article>
-        <p class="section-note">活动资格、有效期及使用规则以对应活动页面为准。</p>
+        <p class="section-note">{{ t('活动资格、有效期及使用规则以对应活动页面为准。') }}</p>
       </section>
 
       <section id="products" class="section products-section page-width">
         <SectionHeading
-          eyebrow="THE GOOD FINDS"
-          title="下一件心动好物，在这里。"
-          description="从日常穿搭到出行配饰，按你的风格慢慢逛。"
-          action="浏览更多商品"
+          :eyebrow="t('THE GOOD FINDS')"
+          :title="t('下一件心动好物，在这里。')"
+          :description="t('从日常穿搭到出行配饰，按你的风格慢慢逛。')"
+          :action="t('浏览更多商品')"
           @action="showMessage('更多商品')"
         />
-        <div class="category-tabs" role="group" aria-label="商品分类">
+        <div class="category-tabs" role="group" :aria-label="t('商品分类')">
           <button
             v-for="item in categories"
-            :key="item"
+            :key="item.code"
             type="button"
-            :class="{ selected: item === category }"
-            :aria-pressed="item === category"
-            @click="category = item"
+            :class="{ selected: item.code === category }"
+            :aria-pressed="item.code === category"
+            @click="category = item.code"
           >
-            {{ item }}
+            {{ item.label }}
           </button>
         </div>
         <div v-if="visibleProducts.length" class="products-grid">
@@ -327,18 +342,20 @@ function navigate(label) {
             @details="showProduct"
           />
         </div>
-        <p v-else class="empty-products">这个分类的好物还在准备中，先逛逛其他分类吧。</p>
-        <p class="section-note">商品图片为选品示意；实际款式、售价与库存以商品详情页为准。</p>
+        <p v-else class="empty-products">{{ t('这个分类的好物还在准备中，先逛逛其他分类吧。') }}</p>
+        <p class="section-note">
+          {{ t('商品图片为选品示意；实际款式、售价与库存以商品详情页为准。') }}
+        </p>
       </section>
 
       <section id="process" class="section process-section page-width">
         <SectionHeading
-          eyebrow="FROM LINK TO DOORSTEP"
-          title="购物的快乐留给你，繁琐的步骤交给我们。"
-          description="一站式代购服务，让每一个环节都清清楚楚。"
-          action="查看新手指南"
+          :eyebrow="t('FROM LINK TO DOORSTEP')"
+          :title="t('购物的快乐留给你，繁琐的步骤交给我们。')"
+          :description="t('一站式代购服务，让每一个环节都清清楚楚。')"
+          :action="t('查看新手指南')"
           dark
-          @action="navigate('帮助中心')"
+          @action="navigate(t('帮助中心'), '#help')"
         />
         <ol class="steps-grid">
           <li v-for="(step, index) in steps" :key="step.title" class="step">
@@ -361,10 +378,10 @@ function navigate(label) {
 
       <section id="shipping" class="section white-section shipping-section page-width">
         <SectionHeading
-          eyebrow="FIND YOUR WAY HOME"
-          title="选一条适合你的寄送路线。"
-          description="目的地、包裹重量和商品类型不同，可用线路也会不同。先估算，再决定。"
-          action="查看全部线路"
+          :eyebrow="t('FIND YOUR WAY HOME')"
+          :title="t('选一条适合你的寄送路线。')"
+          :description="t('目的地、包裹重量和商品类型不同，可用线路也会不同。先估算，再决定。')"
+          :action="t('查看全部线路')"
           @action="
             showMessage(
               '运输线路',
@@ -373,41 +390,42 @@ function navigate(label) {
           "
         />
         <form class="shipping-form" @submit.prevent="estimateShipping">
-          <h3><DesignIcon name="6081d.svg" />国际运费估算</h3>
+          <h3><DesignIcon name="6081d.svg" />{{ t('国际运费估算') }}</h3>
           <label class="shipping-field"
-            ><span>目的地</span
-            ><select v-model="destination" aria-label="目的地">
-              <option disabled value="">选择国家 / 地区 ⌄</option>
-              <option>美国</option>
-              <option>英国</option>
-              <option>加拿大</option>
-              <option>澳大利亚</option>
-              <option>日本</option>
+            ><span>{{ t('目的地') }}</span
+            ><select v-model="destination" :aria-label="t('目的地')">
+              <option disabled value="">{{ t('选择国家 / 地区 ⌄') }}</option>
+              <option value="US">{{ t('美国') }}</option>
+              <option value="GB">{{ t('英国') }}</option>
+              <option value="CA">{{ t('加拿大') }}</option>
+              <option value="AU">{{ t('澳大利亚') }}</option>
+              <option value="JP">{{ t('日本') }}</option>
             </select></label
           >
           <label class="shipping-field"
-            ><span>包裹重量</span
+            ><span>{{ t('包裹重量') }}</span
             ><input
               v-model="weight"
               type="number"
               min="1"
               step="1"
-              aria-label="包裹重量（g）"
-              placeholder="输入重量（g）"
+              :aria-label="t('包裹重量（g）')"
+              :placeholder="t('输入重量（g）')"
           /></label>
           <label class="shipping-field"
-            ><span>商品类型</span
-            ><select v-model="goodsType" aria-label="商品类型">
-              <option disabled value="">选择商品类型 ⌄</option>
-              <option>普通服饰</option>
-              <option>鞋履箱包</option>
-              <option>生活用品</option>
+            ><span>{{ t('商品类型') }}</span
+            ><select v-model="goodsType" :aria-label="t('商品类型')">
+              <option disabled value="">{{ t('选择商品类型 ⌄') }}</option>
+              <option value="clothing">{{ t('普通服饰') }}</option>
+              <option value="shoes">{{ t('鞋履箱包') }}</option>
+              <option value="household">{{ t('生活用品') }}</option>
             </select></label
           >
           <button class="primary-button" type="submit" :disabled="estimating">
-            {{ estimating ? '查询中…' : '查询线路' }} <DesignIcon name="22410.svg" />
+            {{ t(estimating ? '查询中…' : '查询线路') }} <DesignIcon name="22410.svg" />
           </button>
         </form>
+        <p v-if="shippingResult" class="shipping-result" role="status">{{ shippingText }}</p>
         <div class="routes-grid">
           <article v-for="route in routes" :key="route.title" class="route-card">
             <div class="route-top">
@@ -417,23 +435,27 @@ function navigate(label) {
             <h3>{{ route.title }}</h3>
             <p class="route-description">{{ route.description }}</p>
             <div class="route-meta">
-              <p>运费与预计时效：查询后查看</p>
-              <p>可寄范围：以实际线路说明为准</p>
+              <p>{{ t('运费与预计时效：查询后查看') }}</p>
+              <p>{{ t('可寄范围：以实际线路说明为准') }}</p>
             </div>
-            <button type="button" @click="estimateShipping">匹配可用线路 →</button>
+            <button type="button" @click="estimateShipping">{{ t('匹配可用线路 →') }}</button>
           </article>
         </div>
         <p class="section-note">
-          以上为线路选择参考，并非实时可用线路。报价、计费重量、运输时效及寄送限制以查询结果为准。
+          {{
+            t(
+              '以上为线路选择参考，并非实时可用线路。报价、计费重量、运输时效及寄送限制以查询结果为准。',
+            )
+          }}
         </p>
       </section>
 
       <section id="stories" class="section stories-section page-width">
         <SectionHeading
-          eyebrow="UNBOX A LITTLE HAPPINESS"
-          title="从购物清单，到拆箱时刻。"
-          description="看看不同风格的寄送灵感，计划属于你的下一箱好物。"
-          action="进入分享社区"
+          :eyebrow="t('UNBOX A LITTLE HAPPINESS')"
+          :title="t('从购物清单，到拆箱时刻。')"
+          :description="t('看看不同风格的寄送灵感，计划属于你的下一箱好物。')"
+          :action="t('进入分享社区')"
           @action="showMessage('分享社区')"
         />
         <div class="stories-grid">
@@ -450,24 +472,29 @@ function navigate(label) {
               <h3>{{ story.title }}</h3>
               <button
                 type="button"
-                :aria-label="`查看${story.title}`"
+                :aria-label="t('查看{title}', { title: story.title })"
                 @click="
                   showMessage(story.title, '这是一份购物与寄送场景示意，展示内容为 mock 数据。')
                 "
               >
-                <span>寄送场景示意</span><DesignIcon name="03c0d.svg" />
+                <span>{{ t('寄送场景示意') }}</span
+                ><DesignIcon name="03c0d.svg" />
               </button>
             </div>
           </article>
         </div>
-        <p class="section-note">展示图片为购物与寄送场景示意，不代表真实用户评价或实际寄送记录。</p>
+        <p class="section-note">
+          {{ t('展示图片为购物与寄送场景示意，不代表真实用户评价或实际寄送记录。') }}
+        </p>
       </section>
 
       <section id="help" class="help-section white-section page-width">
         <div class="help-copy">
-          <p class="eyebrow">A LITTLE HELP TO START</p>
-          <h2>第一次使用？<br />我们陪你开始。</h2>
-          <p class="help-description">关于购买、仓库和国际寄送，<br />先看看这些常见问题。</p>
+          <p class="eyebrow">{{ t('A LITTLE HELP TO START') }}</p>
+          <h2>{{ t('第一次使用？') }}<br />{{ t('我们陪你开始。') }}</h2>
+          <p class="help-description">
+            {{ t('关于购买、仓库和国际寄送，') }}<br />{{ t('先看看这些常见问题。') }}
+          </p>
           <button
             class="outline-button"
             type="button"
@@ -475,13 +502,13 @@ function navigate(label) {
               showMessage('帮助中心', '你可以展开右侧常见问题，了解代购、仓储和国际寄送流程。')
             "
           >
-            进入帮助中心 <DesignIcon name="90ed9.svg" /></button
+            {{ t('进入帮助中心') }} <DesignIcon name="90ed9.svg" /></button
           ><button
             class="contact-link"
             type="button"
             @click="showMessage('在线客服', '客服入口为静态演示，暂未连接在线客服服务。')"
           >
-            <DesignIcon name="b5414.svg" />还需要帮助？联系在线客服 →
+            <DesignIcon name="b5414.svg" />{{ t('还需要帮助？联系在线客服 →') }}
           </button>
         </div>
         <div class="faq-list">
@@ -510,11 +537,11 @@ function navigate(label) {
       </section>
       <section class="search-cta page-width">
         <div>
-          <h2>你的下一份购物清单，从一个链接开始。</h2>
-          <p>搜索心动商品，探索更多中国好物。</p>
+          <h2>{{ t('你的下一份购物清单，从一个链接开始。') }}</h2>
+          <p>{{ t('搜索心动商品，探索更多中国好物。') }}</p>
         </div>
         <button class="primary-button" type="button" @click="focusSearch">
-          开始搜索商品 <DesignIcon name="22410.svg" />
+          {{ t('开始搜索商品') }} <DesignIcon name="22410.svg" />
         </button>
       </section>
     </main>
@@ -523,7 +550,11 @@ function navigate(label) {
       <div class="footer-main">
         <div class="footer-brand">
           <a class="footer-wordmark" href="#top">SUGARGOO</a>
-          <p>连接中国好物与你的生活。<br />代购、仓储、国际寄送，一站式购物体验。</p>
+          <p>
+            {{ t('连接中国好物与你的生活。') }}<br />{{
+              t('代购、仓储、国际寄送，一站式购物体验。')
+            }}
+          </p>
           <div class="social-links">
             <button
               v-for="social in [
@@ -533,7 +564,7 @@ function navigate(label) {
               ]"
               :key="social.name"
               type="button"
-              :aria-label="social.name"
+              :aria-label="t(social.name)"
               @click="showMessage(social.name)"
             >
               <DesignIcon :name="social.icon" />
@@ -542,13 +573,18 @@ function navigate(label) {
         </div>
         <div v-for="group in footerGroups" :key="group.title" class="footer-group">
           <h2>{{ group.title }}</h2>
-          <button v-for="link in group.links" :key="link" type="button" @click="navigate(link)">
-            {{ link }}
+          <button
+            v-for="link in group.links"
+            :key="link.label"
+            type="button"
+            @click="navigate(link.label, link.target)"
+          >
+            {{ link.label }}
           </button>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© SUGARGOO. All rights reserved.</p>
+        <p>{{ t('© SUGARGOO. All rights reserved.') }}</p>
         <div>
           <button
             v-for="label in ['服务条款', '隐私政策', '寄送限制']"
@@ -556,15 +592,20 @@ function navigate(label) {
             type="button"
             @click="showMessage(label)"
           >
-            {{ label }}</button
-          ><span>中文 / JPY ⌄</span>
+            {{ t(label) }}</button
+          ><LocaleSettings />
         </div>
       </div>
     </footer>
 
     <dialog ref="dialog" class="mock-dialog" @click="$event.target === dialog && dialog.close()">
       <div class="dialog-content">
-        <button class="dialog-close" type="button" aria-label="关闭弹窗" @click="dialog.close()">
+        <button
+          class="dialog-close"
+          type="button"
+          :aria-label="t('关闭弹窗')"
+          @click="dialog.close()"
+        >
           ×</button
         ><img
           v-if="selectedProduct"
@@ -573,14 +614,21 @@ function navigate(label) {
           :alt="selectedProduct.name"
         />
         <h2>{{ dialogTitle }}</h2>
-        <p>{{ dialogText }}</p>
-        <button class="primary-button" type="button" @click="dialog.close()">知道了</button>
+        <p>{{ showingShipping ? shippingText : dialogText }}</p>
+        <button class="primary-button" type="button" @click="dialog.close()">
+          {{ t('知道了') }}
+        </button>
       </div>
     </dialog>
   </div>
 </template>
 
 <style scoped>
+.shipping-result {
+  margin-block: 16px;
+  line-height: 1.6;
+}
+
 .data-status {
   display: flex;
   align-items: center;
@@ -641,10 +689,6 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 20px;
-}
-.locale-display {
-  color: var(--color-text-secondary);
-  font-size: 12px;
 }
 .login {
   font-size: 14px;
@@ -1526,7 +1570,6 @@ h1 span {
   .nav-tools {
     gap: 12px;
   }
-  .locale-display,
   .register {
     display: none;
   }
